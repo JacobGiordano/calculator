@@ -130,11 +130,14 @@ body, h1, h2, h3, h4, h5, h6, p, span, button, input {
 }
 
 .calc-body {
+  display: grid;
   position: relative;
   border: 2px solid #34e7ea;
+  /* border: 2px solid transparent; */
   border-radius: .25rem;
   padding: .5rem;
-  background: rgb(23 210 210 / 75%);
+  background: rgba(23, 210, 195, .75);
+  box-shadow: 0 0 10px 2px rgba(201, 245, 212, 1);
   grid-template-areas: 
   "readout readout"
   "top-row op-btns"
@@ -143,20 +146,21 @@ body, h1, h2, h3, h4, h5, h6, p, span, button, input {
   grid-auto-flow: column;
   grid-auto-columns: 25%; 
   grid-template-columns: auto;
-  animation: 4s linear infinite alternate calc_glow;
+  /* animation: 1s linear infinite alternate calc_glow; */
   transition: all ease-in-out .2s;
-  display: grid;
 
 }
 
-@keyframes calc_glow {
+/* @keyframes calc_glow {
   from {
-    box-shadow: 0 0 20px 10px rgba(7, 216, 216, 1);
+    border: 2px solid rgba(7, 216, 216, 1);
+    box-shadow: 0 0 20px 10px rgba(157, 239, 157, 1);
   }
   to {
-    box-shadow: 0 0 30px 15px rgba(7, 216, 216, 1);
+    border: 2px solid rgba(157, 239, 157, 1);
+    box-shadow: 0 0 20px 10px rgba(7, 216, 216, 1);
   }
-}
+} */
 
 .calc-read-out, .calc-btn {
   display: inline-block;
@@ -213,6 +217,53 @@ body, h1, h2, h3, h4, h5, h6, p, span, button, input {
   overflow: hidden;
   transform: translate(-50%, -10%);
   z-index: 1;
+}
+
+.triangle__wrapper {
+  position: absolute;
+  width: 25%;
+  height: 25%;
+  left: 50%;
+  top: 35%;
+  transition: all ease-in-out 2s;
+  transform-origin: center;
+  transform: translate(-50%);
+  z-index: 5;
+  opacity: 0;
+  animation: 80s linear infinite forwards triangle_spin;
+}
+
+@keyframes triangle_spin {
+  from {
+    opacity: 1;
+    transform: translate(-50%) rotate(0deg);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%) rotate(360deg);
+  }
+}
+
+.triangle-side {
+  border-top: 2px solid #9def9d;
+  /* box-shadow: 0 -2px 16px 8px rgb(23 230 23); */
+  box-shadow: 0 -2px 16px 8px rgb(23 163 230);
+}
+
+/* .triangle-side.side-1 {
+  transform: translateY(400px);
+} */
+
+.triangle-side.side-2 {
+  /* transform: rotate(300deg) translate(-238px, 11px); */
+  /* transform: rotate(60deg) translate(106px, 186px); */
+  transform: rotate(60deg) translate(99px, 172px);
+}
+
+.triangle-side.side-3 {
+  /* transform: rotate(60deg) translate(235px, 12px); */
+  /* transform: rotate(-60deg) translate(-104px, 184px); */
+  transform: rotate(-60deg) translate(-97px, 172px);
 }
 
 .bg__grid-wrapper  {

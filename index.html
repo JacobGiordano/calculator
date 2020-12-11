@@ -7,39 +7,55 @@
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+  <header class="header">
+    <div class="grid-animation-toggle__wrapper">
+      <span>Grid animation:</span>
+      <span>ON</span>
+      <div class="toggle__wrapper">
+        <div class="toggle__btn"></div>
+      </div>
+      <span>OFF</span>
+    </div>
+    <div class="grid-animation-speed__wrapper">
+      <form action="#" id="animation-speed-form">
+        <input type="text" id="animation-speed__input" class="form-input" placeholder="20" maxlength="4">
+        <label for="animation-speed__input">seconds</label>
+        <button id="animation-speed__btn" class="form-btn">Update</button>
+      </form>
+    </div>
+  </header>
   <main class="main">
     <div class="calc__wrapper">
       <div class="calc-body">
         <input id="calc-read-out" class="calc-read-out" readonly aria-readonly="true" placeholder="0"></input>
-        <div class="calc-top-row__wrapper">
-          <div class="calc-btn calc-num-btn" data-value="AC">AC</div>
-          <div class="calc-btn calc-num-btn" data-value="+/-">+/-</div>
-          <div class="calc-btn calc-num-btn" data-value="%">%</div>
-        </div>
-        <div class="calc-num-btn__wrapper">
-          <div class="calc-btn calc-num-btn" data-value="7">7</div>
-          <div class="calc-btn calc-num-btn" data-value="8">8</div>
-          <div class="calc-btn calc-num-btn" data-value="9">9</div>
-          <div class="calc-btn calc-num-btn" data-value="4">4</div>
-          <div class="calc-btn calc-num-btn" data-value="5">5</div>
-          <div class="calc-btn calc-num-btn" data-value="6">6</div>
-          <div class="calc-btn calc-num-btn" data-value="1">1</div>
-          <div class="calc-btn calc-num-btn" data-value="2">2</div>
-          <div class="calc-btn calc-num-btn" data-value="3">3</div>
-          <div class="calc-btn calc-num-btn" data-value="0">0</div>
-          <div class="calc-btn calc-num-btn" data-value=".">.</div>
-        </div>
-        <div id="calc-operations__wrapper" class="calc-operations__wrapper">
-          <div class="calc-btn calc-operation-btn" data-value="/">/</div>
-          <div class="calc-btn calc-operation-btn" data-value="x">x</div>
-          <div class="calc-btn calc-operation-btn" data-value="-">-</div>
-          <div class="calc-btn calc-operation-btn" data-value="+">+</div>
-          <div class="calc-btn calc-operation-btn" data-value="=">=</div>
-        </div>
+          <div class="calc-top-row__wrapper">
+            <button class="calc-btn calc-num-btn" data-value="AC">AC</button>
+            <button class="calc-btn calc-num-btn" data-value="+/-">+/-</button>
+            <button class="calc-btn calc-num-btn" data-value="%">%</button>
+          </div>
+          <div class="calc-num-btn__wrapper">
+            <button class="calc-btn calc-num-btn" data-value="7">7</button>
+            <button class="calc-btn calc-num-btn" data-value="8">8</button>
+            <button class="calc-btn calc-num-btn" data-value="9">9</button>
+            <button class="calc-btn calc-num-btn" data-value="4">4</button>
+            <button class="calc-btn calc-num-btn" data-value="5">5</button>
+            <button class="calc-btn calc-num-btn" data-value="6">6</button>
+            <button class="calc-btn calc-num-btn" data-value="1">1</button>
+            <button class="calc-btn calc-num-btn" data-value="2">2</button>
+            <button class="calc-btn calc-num-btn" data-value="3">3</button>
+            <button class="calc-btn calc-num-btn" data-value="0">0</button>
+            <button class="calc-btn calc-num-btn" data-value=".">.</button>
+          </div>
+          <div id="calc-operations__wrapper" class="calc-operations__wrapper">
+            <button class="calc-btn calc-operation-btn" data-value="/">/</button>
+            <button class="calc-btn calc-operation-btn" data-value="x">x</button>
+            <button class="calc-btn calc-operation-btn" data-value="-">-</button>
+            <button class="calc-btn calc-operation-btn" data-value="+">+</button>
+            <button class="calc-btn calc-operation-btn" data-value="=">=</button>
+          </div>
       </div>
     </div>
     <div class="bg__wrapper">
-      <div class="bg-outer-gradient"></div>
       <div class="bg-mid-gradient"></div>
       <div class="bg__grid-wrapper top-grid-wrapper">
         <div class="bg-top-grid move-grid">

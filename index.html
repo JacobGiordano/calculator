@@ -29,9 +29,9 @@
       <div class="calc-body">
         <input id="calc-read-out" class="calc-read-out" readonly aria-readonly="true" placeholder="0"></input>
           <div class="calc-top-row__wrapper">
-            <button class="calc-btn calc-num-btn" data-value="AC">AC</button>
-            <button class="calc-btn calc-num-btn" data-value="+/-">+/-</button>
-            <button class="calc-btn calc-num-btn" data-value="%">%</button>
+            <button class="calc-btn calc-num-btn calc-operation-btn" data-value="clear">AC</button>
+            <button class="calc-btn calc-num-btn calc-operation-btn" data-value="positive, negative">+/-</button>
+            <button class="calc-btn calc-num-btn calc-operation-btn" data-value="percent">%</button>
           </div>
           <div class="calc-num-btn__wrapper">
             <button class="calc-btn calc-num-btn" data-value="7">7</button>
@@ -47,16 +47,16 @@
             <button class="calc-btn calc-num-btn" data-value=".">.</button>
           </div>
           <div id="calc-operations__wrapper" class="calc-operations__wrapper">
-            <button class="calc-btn calc-operation-btn" data-value="/">/</button>
-            <button class="calc-btn calc-operation-btn" data-value="x">x</button>
-            <button class="calc-btn calc-operation-btn" data-value="-">-</button>
-            <button class="calc-btn calc-operation-btn" data-value="+">+</button>
-            <button class="calc-btn calc-operation-btn" data-value="=">=</button>
+            <button class="calc-btn calc-operation-btn" data-value="divide">/</button>
+            <button class="calc-btn calc-operation-btn" data-value="multiply">x</button>
+            <button class="calc-btn calc-operation-btn" data-value="subtract">-</button>
+            <button class="calc-btn calc-operation-btn" data-value="add">+</button>
+            <button class="calc-btn calc-operation-btn" data-value="equals">=</button>
           </div>
       </div>
     </div>
     <div class="bg__wrapper">
-      <div class="triangle__wrapper">
+      <div id="triangle__wrapper" class="triangle__wrapper fade-in">
         <div class="triangle-side side-1"></div>
         <div class="triangle-side side-2"></div>
         <div class="triangle-side side-3"></div>

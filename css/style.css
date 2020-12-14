@@ -115,17 +115,19 @@ body, h1, h2, h3, h4, h5, h6, p, span, button, input {
   transform: translate(-50%, 50%);
   opacity: 0;
   z-index: 20;
-  animation: 1s linear .5s forwards calc_appear;
+  animation: 1s linear 2s forwards calc_appear;
 }
 
 @keyframes calc_appear {
   from {
     opacity: 0;
-    transform: translate(-50%, 50%) scale(0) perspective(460px) rotateX(90deg);
+    /* transform: translate(-50%, 50%) scale(0) perspective(460px) rotateX(90deg); */
+    transform: translate(-50%, 50%) scale(0);
   }
   to {
     opacity: 1;
-    transform: translate(-50%, 50%) scale(1) perspective(460px) rotateX(0);
+    /* transform: translate(-50%, 50%) scale(1) perspective(460px) rotateX(0); */
+    transform: translate(-50%, 50%) scale(1);
   }
 }
 
@@ -135,6 +137,7 @@ body, h1, h2, h3, h4, h5, h6, p, span, button, input {
   border: 2px solid #34e7ea;
   /* border: 2px solid transparent; */
   border-radius: .25rem;
+  max-width: 280px;
   padding: .5rem;
   background: rgba(23, 210, 195, .75);
   box-shadow: 0 0 10px 2px rgba(201, 245, 212, 1);
@@ -145,10 +148,9 @@ body, h1, h2, h3, h4, h5, h6, p, span, button, input {
   grid-gap: .5rem;
   grid-auto-flow: column;
   grid-auto-columns: 25%; 
-  grid-template-columns: auto;
+  grid-template-columns: minmax(0, 1fr);
   /* animation: 1s linear infinite alternate calc_glow; */
   transition: all ease-in-out .2s;
-
 }
 
 /* @keyframes calc_glow {
@@ -175,7 +177,7 @@ body, h1, h2, h3, h4, h5, h6, p, span, button, input {
   grid-area: readout;
   position: relative;
   font-family: 'djb_get_digitalregular';
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   text-align: right;
 }
 
@@ -224,13 +226,26 @@ body, h1, h2, h3, h4, h5, h6, p, span, button, input {
   width: 25%;
   height: 25%;
   left: 50%;
-  top: 35%;
+  top: 38%;
   transition: all ease-in-out 2s;
   transform-origin: center;
   transform: translate(-50%);
   z-index: 5;
   opacity: 0;
   animation: 80s linear infinite forwards triangle_spin;
+}
+
+.fade-in {
+  animation: 1s ease-in .5s forwards fade_in
+}
+
+@keyframes fade_in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1
+  }
 }
 
 @keyframes triangle_spin {
@@ -278,7 +293,7 @@ body, h1, h2, h3, h4, h5, h6, p, span, button, input {
   width: 100%;
   height: 0;
   top: 50%;
-  box-shadow: 0 0 16px 8px rgba(255, 255, 255, 0.25), 0 0 50px 25px rgba(255, 255, 255, .5), 0 0 80px 100px #fa0397;
+  box-shadow: 0 0 14px 9px rgba(255, 255, 255, .5), 0 0 50px 25px rgba(255, 255, 255, .5), 0 0 80px 100px #fa0397;
   transform: translateY(-50%);
   z-index: 2;
 }

@@ -113,9 +113,9 @@ body, h1, h2, h3, h4, h5, h6, p, span, button, input {
   position: absolute;
   left: 50%;
   transform: translate(-50%, 50%);
-  opacity: 0;
+  /* opacity: 0; */
   z-index: 20;
-  animation: 1s linear 2s forwards calc_appear;
+  /* animation: 1s linear 2s forwards calc_appear; */
 }
 
 @keyframes calc_appear {

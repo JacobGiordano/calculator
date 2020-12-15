@@ -25,88 +25,66 @@ const operate = (operator, a, b) => {
 
 let a;
 let b;
+let display = "";
 let result;
 let clickedFunction;
 const readoutEl = document.getElementById("calc-read-out");
-const tape = document.getElementById("calc-tape");
+const tapeEl = document.getElementById("calc-tape");
 
 // on click
+// 1. On num click, update readout with clicked, concatted string
+// 2. On operator click,
+  // a. Store current readout string
+  // b. Store clicked operator
+// 3. On num click, update readout with clicked, concatted string
+// 4. On equals — or operator — click, 
+  // a. Set readout to result
+  // b. Take result of previous operation and use it as "a"
+  // c. Store clicked operator
+  // d. On num click, update readout with clicked, concatted string
+  // e. On equals — or operator click, 
+    // a. Set readout to result
+    // b. Take result of previous operation and use it as "a"
+    // c. Store clicked operator
 
-document.addEventListener("click", (e) => {
+const evalCalcButton = e => {
   let clickedEl = e.target;
   let clickedValue = clickedEl.getAttribute("data-value");
   if (clickedEl.classList.contains("calc-num-btn")) {
-    readoutEl.value += clickedValue;
-    if (clickedFunction !== undefined && b === undefined) {
-      readoutEl.value = clickedValue;
-      b = readoutEl.value;
-    }
+    display += clickedValue;
+    readoutEl.value = display;
   }
   if (clickedEl.classList.contains("calc-operation-btn")) {
-    a = Number(readoutEl.value);
-    clickedFunction = clickedValue;
-  }
-  if (clickedEl.classList.contains("equals-btn")) {
-    b = Number(readoutEl.value);
-    result = operate(clickedFunction, a, b);
-    readoutEl.value = result;
-    console.log(`${a} ${clickedFunction} ${b} = ${result}`);
+    if (clickedFunction === undefined && clickedValue !== "=") {
+      clickedFunction = clickedValue;
+    }
+    if (a !== undefined && b === undefined) {
+      b = Number(display);
+      console.log("b = " + b);
+      result = operate(clickedFunction, a, b);
+      readoutEl.value = result;
+      console.log(`${a} ${clickedFunction} ${b} = ${result}`);
+      a = result
+      b = undefined;
+      display = 0;
+      clickedFunction = undefined;
+      
+    } else if (a === undefined) {
+      a = Number(display);
+      console.log("a = " + a);
+      console.log(`${a} ${clickedFunction} ${b} = ${result}`);
+    }
+    display = "";
   }
   if (clickedValue === "clear") {
     a = undefined;
     b = undefined;
     clickedFunction = undefined;
+    result = undefined;
+    display = "";
     readoutEl.value = "";
   }
-});
+}
 
-
-
-
-
-// document.addEventListener("click", (e) => {
-//   let clickedEl = e.target;
-//   // console.log(clickedEl);
-//   if (clickedEl.classList.contains("calc-num-btn")) {
-//     let clickedNumVal = Number(clickedEl.getAttribute("data-value"));
-//     if (!isNaN(clickedNumVal)) {
-//       // console.log(clickedNumVal);
-//       display = clickedNumVal;
-//       // console.log(display);
-//       readoutEl.value = display;
-//       if (a != undefined) {
-//         b = clickedNumVal;
-//         result = operate(clickedFunction, a, b);
-//       }
-//     }
-//   }
-//   if (clickedEl.classList.contains("calc-operation-btn")) {
-//     a = display;
-//     console.log(display);
-//     clickedFunction = e.target.getAttribute("data-value");
-//     console.log(clickedFunction);
-//     if (clickedFunction == "clear") {
-//       display = 0;
-//       readoutEl.value = display;
-//       a = undefined;
-//       b = undefined;
-//     }
-//     if (a !== undefined && b !== undefined) {
-//       readoutEl.value = result;
-//       console.log(result);
-//       if (clickedFunction == "=") {
-//         let docFrag = new DocumentFragment;
-//         let newEntryLine = document.createElement("span");
-//         newEntryLine.classList.add("tape-line");
-//         let newEntry = document.createTextNode(`${a} ${clickedFunction} ${b} = ${result}
-//         `);
-//         newEntryLine.appendChild(newEntry);
-//         docFrag.appendChild(newEntryLine);
-//         tape.appendChild(docFrag);
-//         a = undefined;
-//         b = undefined;
-//       }
-//     }
-//   }
-// });
-
+document.addEventListener("click", evalCalcButton, false);
+document.addEventListener("keyup", evalCalcButton, false);

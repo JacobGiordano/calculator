@@ -31,22 +31,6 @@ let clickedFunction;
 const readoutEl = document.getElementById("calc-read-out");
 const tapeEl = document.getElementById("calc-tape");
 
-// on click
-// 1. On num click, update readout with clicked, concatted string
-// 2. On operator click,
-  // a. Store current readout string
-  // b. Store clicked operator
-// 3. On num click, update readout with clicked, concatted string
-// 4. On equals — or operator — click, 
-  // a. Set readout to result
-  // b. Take result of previous operation and use it as "a"
-  // c. Store clicked operator
-  // d. On num click, update readout with clicked, concatted string
-  // e. On equals — or operator click, 
-    // a. Set readout to result
-    // b. Take result of previous operation and use it as "a"
-    // c. Store clicked operator
-
 const evalCalcButton = e => {
   let clickedEl = e.target;
   let clickedValue = clickedEl.getAttribute("data-value");
@@ -55,9 +39,6 @@ const evalCalcButton = e => {
     readoutEl.value = display;
   }
   if (clickedEl.classList.contains("calc-operation-btn")) {
-    if (clickedFunction === undefined && clickedValue !== "=") {
-      clickedFunction = clickedValue;
-    }
     if (a !== undefined && b === undefined) {
       b = Number(display);
       console.log("b = " + b);
@@ -67,14 +48,15 @@ const evalCalcButton = e => {
       a = result
       b = undefined;
       display = 0;
-      clickedFunction = undefined;
-      
     } else if (a === undefined) {
       a = Number(display);
       console.log("a = " + a);
       console.log(`${a} ${clickedFunction} ${b} = ${result}`);
     }
     display = "";
+    if (clickedValue !== "=") {
+      clickedFunction = clickedValue;
+    }
   }
   if (clickedValue === "clear") {
     a = undefined;

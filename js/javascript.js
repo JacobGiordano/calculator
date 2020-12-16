@@ -52,10 +52,21 @@ const evalCalcButton = e => {
     readoutEl.value = display;
   }
 
-  if (clickedEl.classList.contains("calc-operation-btn")) {
+  if (clickedEl.classList.contains("calc-function-btn")) {
     if (clickedValue === "clear") {
       clearValues();
-    } else if (clickedValue !== "=") {
+    } else if (clickedValue === "positive, negative") {
+      display = display.includes("-") ? display.replace("-", "") : "-" + display;
+      readoutEl.value = display;
+    } else if (clickedValue === "percent") {
+      display = (Number(display) * .01).toString();
+      console.log(display);
+      readoutEl.value = display;
+    }
+  }
+
+  if (clickedEl.classList.contains("calc-operation-btn")) {
+    if (clickedValue !== "=") {
       if (a === undefined) {
         console.log("a === undefined");
         a = Number(display);
@@ -66,6 +77,10 @@ const evalCalcButton = e => {
         console.log(`${a} ${clickedFunction} ${b} = ${result}`);
         if (display !== "" && display !== undefined && !isNaN(display)) {
           b = Number(display);
+          if (b === 0 && clickedFunction === "/") {
+            readoutEl.value = "No, no, no."
+            return;
+          }
           console.log("b === undefined");
           console.log(`a = ${a}; b = ${b}`);
           result = operate(clickedFunction, a, b);
@@ -81,6 +96,10 @@ const evalCalcButton = e => {
     } else if (clickedValue === "=") {
       console.log("clicked equals");
       b = Number(display);
+      if (b === 0 && clickedFunction === "/") {
+        readoutEl.value = "No, no, no."
+        return;
+      }
       console.log(`a = ${a}; b = ${b}`);
       if (!isNaN(a) && !isNaN(b)) {
         result = operate(clickedFunction, a, b);

@@ -25,46 +25,73 @@ const operate = (operator, a, b) => {
 
 let a;
 let b;
-let display = "";
+let display;
 let result;
 let clickedFunction;
 const readoutEl = document.getElementById("calc-read-out");
 const tapeEl = document.getElementById("calc-tape");
 
+const clearValues = () => {
+  a = undefined;
+  b = undefined;
+  clickedFunction = undefined;
+  result = undefined;
+  display = "";
+  readoutEl.value = "";
+}
+
 const evalCalcButton = e => {
   let clickedEl = e.target;
   let clickedValue = clickedEl.getAttribute("data-value");
+
   if (clickedEl.classList.contains("calc-num-btn")) {
+    if (display === undefined){
+      display = "";
+    }
     display += clickedValue;
     readoutEl.value = display;
   }
+
   if (clickedEl.classList.contains("calc-operation-btn")) {
-    if (a !== undefined && b === undefined) {
-      b = Number(display);
-      console.log("b = " + b);
-      result = operate(clickedFunction, a, b);
-      readoutEl.value = result;
-      console.log(`${a} ${clickedFunction} ${b} = ${result}`);
-      a = result
-      b = undefined;
-      display = 0;
-    } else if (a === undefined) {
-      a = Number(display);
-      console.log("a = " + a);
-      console.log(`${a} ${clickedFunction} ${b} = ${result}`);
-    }
-    display = "";
-    if (clickedValue !== "=") {
+    if (clickedValue === "clear") {
+      clearValues();
+    } else if (clickedValue !== "=") {
+      if (a === undefined) {
+        console.log("a === undefined");
+        a = Number(display);
+        console.log(`a = ${a}`);
+        display = undefined;
+      } else if (a !== undefined) {
+        console.log(`a !== undefined; a = ${a}`);
+        console.log(`${a} ${clickedFunction} ${b} = ${result}`);
+        if (display !== "" && display !== undefined && !isNaN(display)) {
+          b = Number(display);
+          console.log("b === undefined");
+          console.log(`a = ${a}; b = ${b}`);
+          result = operate(clickedFunction, a, b);
+          console.log(`${a} ${clickedFunction} ${b} = ${result}`);
+          readoutEl.value = result;
+          display = undefined;
+          a = result;
+          b = undefined;
+        }
+      }
       clickedFunction = clickedValue;
+      console.log(`clickedFunction = ${clickedFunction}`);
+    } else if (clickedValue === "=") {
+      console.log("clicked equals");
+      b = Number(display);
+      console.log(`a = ${a}; b = ${b}`);
+      if (!isNaN(a) && !isNaN(b)) {
+        result = operate(clickedFunction, a, b);
+        console.log(`${a} ${clickedFunction} ${b} = ${result}`);
+        display = result;
+        readoutEl.value = display;
+        a = result;
+        b = undefined;
+      }
+      display = undefined;
     }
-  }
-  if (clickedValue === "clear") {
-    a = undefined;
-    b = undefined;
-    clickedFunction = undefined;
-    result = undefined;
-    display = "";
-    readoutEl.value = "";
   }
 }
 

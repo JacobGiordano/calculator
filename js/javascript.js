@@ -28,6 +28,7 @@ let b;
 let display;
 let result;
 let clickedFunction;
+const calculator = document.getElementById("calc-body");
 const readoutEl = document.getElementById("calc-read-out");
 const tapeEl = document.getElementById("calc-tape");
 
@@ -40,7 +41,16 @@ const clearValues = () => {
   readoutEl.value = "";
 }
 
+const evalKeyPressed = e => {
+  console.log(e.key);
+  let pressed = document.body.querySelector(`.calc-btn[data-value="${e.key}"]`);
+  console.log(pressed);
+  // pressed.click();
+}
+
 const evalCalcButton = e => {
+  evalKeyPressed(e);
+  
   let clickedEl = e.target;
   let clickedValue = clickedEl.getAttribute("data-value");
 
@@ -115,4 +125,4 @@ const evalCalcButton = e => {
 }
 
 document.addEventListener("click", evalCalcButton, false);
-document.addEventListener("keyup", evalCalcButton, false);
+document.addEventListener("keyup", evalKeyPressed, false);

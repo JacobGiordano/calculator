@@ -38,7 +38,7 @@ body, h1, h2, h3, h4, h5, h6, p, span, button, input {
   background: rgba(0, 0, 0, .6);
   color: white;
   width: 100%;
-  padding: 2rem;
+  padding: 1rem;
   box-shadow: 0 0 20px 20px rgba(0, 0, 0, .6);
   top: 0;
   z-index: 2;
@@ -96,7 +96,7 @@ body, h1, h2, h3, h4, h5, h6, p, span, button, input {
 .grid-animation-speed__wrapper {
   display: inline-block;
   font-family: 'djb_get_digitalregular';
-  margin-top: .5rem;
+  /* margin-top: .5rem; */
 }
 
 #animation-speed__input {
@@ -112,21 +112,19 @@ body, h1, h2, h3, h4, h5, h6, p, span, button, input {
 .calc__wrapper {
   position: absolute;
   left: 50%;
-  transform: translate(-50%, 50%);
-  /* opacity: 0; */
+  transform: translate(-50%);
+  opacity: 0;
   z-index: 20;
-  /* animation: 1s linear 2s forwards calc_appear; */
+  animation: 2s linear 3s forwards calc_appear;
 }
 
 @keyframes calc_appear {
   from {
     opacity: 0;
-    /* transform: translate(-50%, 50%) scale(0) perspective(460px) rotateX(90deg); */
     transform: translate(-50%, 50%) scale(0);
   }
   to {
     opacity: 1;
-    /* transform: translate(-50%, 50%) scale(1) perspective(460px) rotateX(0); */
     transform: translate(-50%, 50%) scale(1);
   }
 }
@@ -149,20 +147,8 @@ body, h1, h2, h3, h4, h5, h6, p, span, button, input {
   grid-auto-flow: column;
   grid-auto-columns: 25%; 
   grid-template-columns: minmax(0, 1fr);
-  /* animation: 1s linear infinite alternate calc_glow; */
   transition: all ease-in-out .2s;
 }
-
-/* @keyframes calc_glow {
-  from {
-    border: 2px solid rgba(7, 216, 216, 1);
-    box-shadow: 0 0 20px 10px rgba(157, 239, 157, 1);
-  }
-  to {
-    border: 2px solid rgba(157, 239, 157, 1);
-    box-shadow: 0 0 20px 10px rgba(7, 216, 216, 1);
-  }
-} */
 
 .calc-read-out, .calc-btn {
   display: inline-block;
@@ -307,24 +293,60 @@ body, h1, h2, h3, h4, h5, h6, p, span, button, input {
   width: 100%;
 }
 
-.bg-mid-gradient {
+.sun-wrapper {
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 31.5%;
+  transform: translate(-50%);
+  z-index: 1;
+}
+
+.sun {
+  /* background: linear-gradient(#f3af5a 0%, #F3995A 10%, #f75151 35%, transparent 0%, transparent 35.5%, #ed665b 0%, #f74646 46%, transparent 0%, transparent 46.75%, #f74747 20%, #fd1c6f 56%, transparent 0%, transparent 58%, #fc216c 0%, #d00e82 66%, transparent 0%, transparent 69%, #bb0d6a 0%, #f75ac7 73%, transparent 0%); */
+  /* background: linear-gradient(#f3af5a 0%, #F3995A 10%, #f75151 22.75%, transparent 0%, transparent 25.5%, #ed665b 0%, #f74646 36%, transparent 0%, transparent 39.75%, #f74747 20%, #fd1c6f 49%, transparent 0%, transparent 55%, #fc216c 0%, #d00e82 61%, transparent 0%, transparent 68%, #bb0d6a 0%, #f75ac7 71%, transparent 0%, transparent 81%, transparent); */
+  background: linear-gradient(#f3af5a 0%, #F3995A 10%, #ed665b 25%, #f74646 40%, #fc216c 50%, #ac2178 80%, transparent 0%);
+  width: 23rem;
+  height: 23rem;
+  border-radius: 50%;
+  box-shadow: 0 0 40px 30px rgba(250, 3, 140, .75), inset 0 0 0px 1px rgba(255, 255, 255, .1), inset 0 0 20px 6px #ff2694;
+  z-index: 3;
+}
+
+.bg__grid-wrapper.top-grid-wrapper:before, .bg__grid-wrapper.bottom-grid-wrapper:before {
+  content: "";
   display: block;
   position: absolute;
   width: 100%;
-  height: 0;
-  top: 50%;
-  box-shadow: 0 0 14px 9px rgba(255, 255, 255, .5), 0 0 50px 25px rgba(255, 255, 255, .5), 0 0 80px 100px #fa0397;
-  transform: translateY(-50%);
-  z-index: 2;
+  height: 100%;
+  box-shadow: inset 0 0 60px 110px #160f22;
+  z-index: 3;
 }
 
 .bg__grid-wrapper.top-grid-wrapper {
-  transform: perspective(270px) rotateX(-45deg) rotateZ(180deg) translateZ(104px);
+  /* transform: perspective(270px) rotateX(-45deg) rotateZ(180deg) translateZ(-70px); */
+  transform: perspective(720px) rotateX(-75deg) rotateZ(180deg) translateZ(-62px);
 }
 
 .bg__grid-wrapper.bottom-grid-wrapper {
+  position: relative;
   max-height: 460px;
-  transform: perspective(340px) rotateX(-135deg) rotateZ(180deg) translateZ(-140px);
+  /* transform: perspective(340px) rotateX(-135deg) rotateZ(180deg) translateZ(-140px); */
+  transform: perspective(340px) rotateX(-135deg) rotateZ(180deg) translateZ(-39px);
+  /* z-index: 1; */
+}
+
+.bg__grid-wrapper.bottom-grid-wrapper:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 150%;
+  height: 100%;
+  box-shadow: 0 0px 10px 10px #cb47ec, 0 0px 60px 30px #f52297;
+  z-index: 6;
 }
 
 .bg-top-grid, .bg-bottom-grid {

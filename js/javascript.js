@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   var triangleWrapper = document.getElementById("triangle__wrapper");
-  var timer = setTimeout(() => {triangleWrapper.classList.remove("fade-in")}, 4000);
+  var timer = setTimeout(() => {triangleWrapper.classList.remove("fade-in")}, 5500);
   timer;
 });
 

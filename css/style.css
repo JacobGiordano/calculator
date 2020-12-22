@@ -112,10 +112,10 @@ body, h1, h2, h3, h4, h5, h6, p, span, button, input {
 .calc__wrapper {
   position: absolute;
   left: 50%;
-  transform: translate(-50%);
-  opacity: 0;
+  transform: translate(-50%, 50%);
+  /* opacity: 0; */
   z-index: 20;
-  animation: 2s linear 3s forwards calc_appear;
+  /* animation: 2s linear 3s forwards calc_appear; */
 }
 
 @keyframes calc_appear {

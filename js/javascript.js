@@ -107,16 +107,22 @@ const returnFinalResult = () => {
 }
 
 const evalKeyPressed = e => {
-  console.log(e.key);
+  // console.log(e.key);
   let pressed = document.body.querySelector(`.calc-btn[data-value="${e.key}"]`);
-  console.log(pressed);
-  // pressed.click();
+  // console.log(pressed);
+  return pressed;
 }
 
 const evalCalcButton = e => {
-  evalKeyPressed(e);
+  let clickedEl;
+  let clicked = evalKeyPressed(e);
   
-  let clickedEl = e.target;
+  if (clicked) {
+    clickedEl = clicked;
+    console.log(clicked);
+  } else {
+    clickedEl = e.target;
+  }
   let clickedValue = clickedEl.getAttribute("data-value");
 
   if (clickedEl.classList.contains("calc-num-btn")) {
@@ -147,4 +153,4 @@ const evalCalcButton = e => {
 }
 
 document.addEventListener("click", evalCalcButton, false);
-document.addEventListener("keyup", evalKeyPressed, false);
+document.addEventListener("keyup", evalCalcButton, false);

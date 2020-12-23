@@ -41,11 +41,15 @@ const clearValues = () => {
   readoutEl.value = "";
 }
 
-const updateDisplay = (clickedValue) => {
+const updateDisplay = (clickedValue, backspace) => {
   if (display === undefined){
     display = "";
   }
-  display += clickedValue;
+  if (backspace) {
+    display = display.slice(0, -1);
+  } else {
+    display += clickedValue;
+  }
   readoutEl.value = display;
 }
 
@@ -61,7 +65,7 @@ const convertToPercent = () => {
 }
 
 const firstOperation = () => {
-  console.log("a === undefined");
+  console.log("a === undefined || a === ''");
   a = Number(display);
   console.log(`a = ${a}`);
   display = undefined;
@@ -102,13 +106,38 @@ const returnFinalResult = () => {
     readoutEl.value = display;
     a = result;
     b = undefined;
+  } else if (isNaN(a) && !isNaN(b)) {
+    a = b;
+    b = undefined;
+  } else if (isNaN(a)) {
+    a = undefined;
+  } else if (isNaN(b)) {
+    b = undefined;
   }
   display = undefined;
 }
 
 const evalKeyPressed = e => {
-  // console.log(e.key);
-  let pressed = document.body.querySelector(`.calc-btn[data-value="${e.key}"]`);
+  console.log(e.key);
+  let pressed;
+
+  if (e.key == "Enter") {
+    pressed = document.body.querySelector(`.calc-btn[data-value="="]`);
+  } else if (e.key == "*") {
+    pressed = document.body.querySelector(`.calc-btn[data-value="x"]`);
+  } else if (e.key == "c") {
+    pressed = document.body.querySelector(`.calc-btn[data-value="clear"]`);
+  } else if (e.key == "%") {
+    pressed = document.body.querySelector(`.calc-btn[data-value="percent"]`);
+  } else if (e.key.toLowerCase() == "p" || e.key.toLowerCase() == "n") {
+    pressed = document.body.querySelector(`.calc-btn[data-value="positive, negative"]`);
+  } else if (e.key == "Backspace") {
+    updateDisplay(display, true);
+    console.log(display);
+    return;
+  } else {
+    pressed = document.body.querySelector(`.calc-btn[data-value="${e.key}"]`);
+  }
   // console.log(pressed);
   return pressed;
 }
@@ -126,7 +155,7 @@ const evalCalcButton = e => {
   let clickedValue = clickedEl.getAttribute("data-value");
 
   if (clickedEl.classList.contains("calc-num-btn")) {
-    updateDisplay(clickedValue);
+    updateDisplay(clickedValue, false);
   }
   if (clickedEl.classList.contains("calc-function-btn")) {
     if (clickedValue === "clear") {
@@ -139,7 +168,7 @@ const evalCalcButton = e => {
   }
   if (clickedEl.classList.contains("calc-operation-btn")) {
     if (clickedValue !== "=") {
-      if (a === undefined) {
+      if (a === undefined || a === "") {
         firstOperation();
       } else if (a !== undefined) {
         secondOperation();

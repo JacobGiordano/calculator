@@ -41,12 +41,14 @@ const clearValues = () => {
   readoutEl.value = "";
 }
 
-const updateDisplay = (clickedValue, backspace) => {
+const updateDisplay = (clickedValue, modifier) => {
   if (display === undefined){
     display = "";
   }
-  if (backspace) {
-    display = display.slice(0, -1);
+  if (modifier) {
+    if (modifier.toLowerCase() === "backspace") {
+      display = display.slice(0, -1);
+    }
   } else {
     display += clickedValue;
   }
@@ -54,14 +56,25 @@ const updateDisplay = (clickedValue, backspace) => {
 }
 
 const positiveNegative = () => {
+  if (display === undefined) {
+    display = readoutEl.value;
+    a = display;
+  }
   display = display.includes("-") ? display.replace("-", "") : "-" + display;
   readoutEl.value = display;
 }
 
 const convertToPercent = () => {
-  display = (Number(display) * .01).toString();
-  console.log(display);
-  readoutEl.value = display;
+  console.log(`Starting display val = ${display}`);
+  if (display === undefined && a !== undefined && b === undefined) {
+    display = a;
+  }
+  if (display !== undefined)  {
+    display = (Number(display) * .01).toString();
+    console.log(display);
+    readoutEl.value = display;
+  }
+  console.log(`Ending display val = ${display}`);
 }
 
 const firstOperation = () => {
@@ -99,7 +112,7 @@ const returnFinalResult = () => {
     return;
   }
   console.log(`a = ${a}; b = ${b}`);
-  if (!isNaN(a) && !isNaN(b)) {
+  if (!isNaN(a) && !isNaN(b) && a !== undefined && b !== undefined) {
     result = operate(clickedFunction, a, b);
     console.log(`${a} ${clickedFunction} ${b} = ${result}`);
     display = result;
@@ -118,22 +131,22 @@ const returnFinalResult = () => {
 }
 
 const evalKeyPressed = e => {
-  console.log(e.key);
+  // console.log(e.key);
   let pressed;
 
-  if (e.key == "Enter") {
+  if (e.key === "Enter") {
     pressed = document.body.querySelector(`.calc-btn[data-value="="]`);
-  } else if (e.key == "*") {
+  } else if (e.key === "*") {
     pressed = document.body.querySelector(`.calc-btn[data-value="x"]`);
-  } else if (e.key == "c") {
+  } else if (e.key === "c") {
     pressed = document.body.querySelector(`.calc-btn[data-value="clear"]`);
-  } else if (e.key == "%") {
+  } else if (e.key === "%") {
     pressed = document.body.querySelector(`.calc-btn[data-value="percent"]`);
-  } else if (e.key.toLowerCase() == "p" || e.key.toLowerCase() == "n") {
+  } else if (e.key === "p" || e.key === "n") {
     pressed = document.body.querySelector(`.calc-btn[data-value="positive, negative"]`);
-  } else if (e.key == "Backspace") {
-    updateDisplay(display, true);
-    console.log(display);
+  } else if (e.key === "Backspace") {
+    updateDisplay(display, e.key);
+    // console.log(display);
     return;
   } else {
     pressed = document.body.querySelector(`.calc-btn[data-value="${e.key}"]`);
@@ -148,14 +161,14 @@ const evalCalcButton = e => {
   
   if (clicked) {
     clickedEl = clicked;
-    console.log(clicked);
+    // console.log(clicked);
   } else {
     clickedEl = e.target;
   }
   let clickedValue = clickedEl.getAttribute("data-value");
 
   if (clickedEl.classList.contains("calc-num-btn")) {
-    updateDisplay(clickedValue, false);
+    updateDisplay(clickedValue);
   }
   if (clickedEl.classList.contains("calc-function-btn")) {
     if (clickedValue === "clear") {
@@ -174,7 +187,7 @@ const evalCalcButton = e => {
         secondOperation();
       }
       clickedFunction = clickedValue;
-      console.log(`clickedFunction = ${clickedFunction}`);
+      // console.log(`clickedFunction = ${clickedFunction}`);
     } else if (clickedValue === "=") {
       returnFinalResult();
     }

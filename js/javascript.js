@@ -41,18 +41,23 @@ const clearValues = () => {
   readoutEl.value = "";
 }
 
-const updateDisplay = (clickedValue, modifier) => {
+const updateDisplay = (clickedValue) => {
   if (display === undefined){
     display = "";
   }
-  if (modifier) {
-    if (modifier.toLowerCase() === "backspace") {
+  if (isNaN(Number(clickedValue))) {
+    if (clickedValue.toLowerCase() === "backspace") {
       display = display.slice(0, -1);
+    } else if (clickedValue === ".") {
+      let splitDisplay = display.split(".");
+      if (splitDisplay.length <= 1) {
+        display += clickedValue;
+      }
     }
   } else {
     display += clickedValue;
   }
-  readoutEl.value = display;
+  readoutEl.value = display.slice(0, 12);
 }
 
 const positiveNegative = () => {
@@ -61,7 +66,7 @@ const positiveNegative = () => {
     a = display;
   }
   display = display.includes("-") ? display.replace("-", "") : "-" + display;
-  readoutEl.value = display;
+  readoutEl.value = display.slice(0, 12);
 }
 
 const convertToPercent = () => {
@@ -72,7 +77,7 @@ const convertToPercent = () => {
   if (display !== undefined)  {
     display = (Number(display) * .01).toString();
     console.log(display);
-    readoutEl.value = display;
+    readoutEl.value = display.slice(0, 12);
   }
   console.log(`Ending display val = ${display}`);
 }
@@ -90,14 +95,14 @@ const secondOperation = () => {
   if (display !== "" && display !== undefined && !isNaN(display)) {
     b = Number(display);
     if (b === 0 && clickedFunction === "/") {
-      readoutEl.value = "No, no, no."
+      readoutEl.value = "No can do";
       return;
     }
     console.log("b === undefined");
     console.log(`a = ${a}; b = ${b}`);
     result = operate(clickedFunction, a, b);
     console.log(`${a} ${clickedFunction} ${b} = ${result}`);
-    readoutEl.value = result;
+    readoutEl.value = result.toString().slice(0, 12);
     display = undefined;
     a = result;
     b = undefined;
@@ -108,14 +113,14 @@ const returnFinalResult = () => {
   console.log("clicked equals");
   b = Number(display);
   if (b === 0 && clickedFunction === "/") {
-    readoutEl.value = "No, no, no."
+    readoutEl.value = "No can do";
     return;
   }
   console.log(`a = ${a}; b = ${b}`);
   if (!isNaN(a) && !isNaN(b) && a !== undefined && b !== undefined) {
     result = operate(clickedFunction, a, b);
     console.log(`${a} ${clickedFunction} ${b} = ${result}`);
-    display = result;
+    display = result.toString().slice(0, 12);
     readoutEl.value = display;
     a = result;
     b = undefined;
@@ -144,10 +149,8 @@ const evalKeyPressed = e => {
     pressed = document.body.querySelector(`.calc-btn[data-value="percent"]`);
   } else if (e.key === "p" || e.key === "n") {
     pressed = document.body.querySelector(`.calc-btn[data-value="positive, negative"]`);
-  } else if (e.key === "Backspace") {
-    updateDisplay(display, e.key);
-    // console.log(display);
-    return;
+  } else if (e.key === "Backspace" || e.key === ".") {
+    updateDisplay(e.key);
   } else {
     pressed = document.body.querySelector(`.calc-btn[data-value="${e.key}"]`);
   }
@@ -177,6 +180,8 @@ const evalCalcButton = e => {
       positiveNegative();
     } else if (clickedValue === "percent") {
       convertToPercent();
+    } else if (clickedValue === ".") {
+      updateDisplay(clickedValue);
     }
   }
   if (clickedEl.classList.contains("calc-operation-btn")) {

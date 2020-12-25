@@ -129,6 +129,10 @@ body, h1, h2, h3, h4, h5, h6, p, span, button, input {
   }
 }
 
+.calc__wrapper.show-tape {
+  width: 588px;
+}
+
 .calc-body {
   display: inline-grid;
   position: relative;
@@ -146,7 +150,9 @@ body, h1, h2, h3, h4, h5, h6, p, span, button, input {
   grid-auto-flow: column;
   grid-auto-columns: 25%; 
   grid-template-columns: minmax(0, 1fr);
+  vertical-align: top;
   transition: all ease-in-out .2s;
+  z-index: 10;
 }
 
 .calc-read-out, .calc-btn {
@@ -197,17 +203,34 @@ body, h1, h2, h3, h4, h5, h6, p, span, button, input {
 }
 
 .calc-tape {
-  /* display: inline-block; */
   display: none;
   position: relative;
   border: 2px solid #34e7ea;
-  /* border: 2px solid transparent; */
   border-radius: .25rem;
   width: 100%;
-  max-width: 280px;
+  max-width: 290px;
   padding: .5rem;
   background: rgba(23, 210, 195, .75);
   box-shadow: 0 0 10px 2px rgba(201, 245, 212, 1);
+  opacity: 0;
+  transition: all ease-in-out .2s;
+  z-index: 9;
+}
+
+.calc-tape.reveal-tape {
+  display: inline-block;
+  animation: linear .25s forwards reveal_tape;
+}
+
+@keyframes reveal_tape {
+  from { 
+    opacity: 0;
+    left: -58%; 
+  }
+  to   { 
+    opacity: 1;
+    left: 0;
+  }
 }
 
 .calc-tape .tape-line {

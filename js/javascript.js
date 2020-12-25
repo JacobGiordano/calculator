@@ -82,6 +82,14 @@ const convertToPercent = () => {
   console.log(`Ending display val = ${display}`);
 }
 
+const newTapeLine = tapeLineData => {
+  let newText = document.createTextNode(tapeLineData);
+  let newLine = document.createElement("span");
+  newLine.classList.add("tape-line");
+  newLine.appendChild(newText);
+  tapeEl.appendChild(newLine);
+}
+
 const firstOperation = () => {
   console.log("a === undefined || a === ''");
   a = Number(display);
@@ -103,6 +111,7 @@ const secondOperation = () => {
     result = operate(clickedFunction, a, b);
     console.log(`${a} ${clickedFunction} ${b} = ${result}`);
     readoutEl.value = result.toString().slice(0, 12);
+    newTapeLine(`${a} ${clickedFunction} ${b} = ${result}`);
     display = undefined;
     a = result;
     b = undefined;
@@ -122,6 +131,7 @@ const returnFinalResult = () => {
     console.log(`${a} ${clickedFunction} ${b} = ${result}`);
     display = result.toString().slice(0, 12);
     readoutEl.value = display;
+    newTapeLine(`${a} ${clickedFunction} ${b} = ${result}`);
     a = result;
     b = undefined;
   } else if (isNaN(a) && !isNaN(b)) {

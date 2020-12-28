@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   var triangleWrapper = document.getElementById("triangle__wrapper");
-  var timer = setTimeout(() => {triangleWrapper.classList.remove("fade-in")}, 5500);
+  var timer = setTimeout(() => {triangleWrapper.classList.add("triangle-spin")}, 5500);
   timer;
 });
 
@@ -111,7 +111,7 @@ const secondOperation = () => {
     result = operate(clickedFunction, a, b);
     console.log(`${a} ${clickedFunction} ${b} = ${result}`);
     readoutEl.value = result.toString().slice(0, 12);
-    newTapeLine(`${a} ${clickedFunction} ${b} = ${result}`);
+    newTapeLine(`${a} ${clickedFunction} ${b} = ${result.toString().slice(0, 12)}`);
     display = undefined;
     a = result;
     b = undefined;
@@ -131,7 +131,7 @@ const returnFinalResult = () => {
     console.log(`${a} ${clickedFunction} ${b} = ${result}`);
     display = result.toString().slice(0, 12);
     readoutEl.value = display;
-    newTapeLine(`${a} ${clickedFunction} ${b} = ${result}`);
+    newTapeLine(`${a} ${clickedFunction} ${b} = ${result.toString().slice(0, 12)}`);
     a = result;
     b = undefined;
   } else if (isNaN(a) && !isNaN(b)) {
@@ -169,15 +169,17 @@ const evalKeyPressed = e => {
 }
 
 const evalCalcButton = e => {
+  evalToggleClick(e);
   let clickedEl;
-  let clicked = evalKeyPressed(e);
+  let keyPress = evalKeyPressed(e);
   
-  if (clicked) {
-    clickedEl = clicked;
+  if (keyPress) {
+    clickedEl = keyPress;
     // console.log(clicked);
   } else {
     clickedEl = e.target;
   }
+
   let clickedValue = clickedEl.getAttribute("data-value");
 
   if (clickedEl.classList.contains("calc-num-btn")) {
@@ -205,6 +207,46 @@ const evalCalcButton = e => {
       // console.log(`clickedFunction = ${clickedFunction}`);
     } else if (clickedValue === "=") {
       returnFinalResult();
+    }
+  }
+}
+
+const evalToggleClick = e => {
+  let clickedToggleParent = e.target.closest(".toggle__wrapper");
+  if (clickedToggleParent === null) {
+    return;
+  } else {
+    let toggleBtn = clickedToggleParent.querySelectorAll(".toggle__btn")[0];
+    if (toggleBtn.classList.contains("on")) {
+      toggleBtn.classList.remove("on");
+      toggleBtn.classList.add("off");
+    } else {
+      toggleBtn.classList.remove("off");
+      toggleBtn.classList.add("on");
+    }
+    if (clickedToggleParent.classList.contains("grid-animation-toggle__wrapper")) {
+      let bgGrids = Array.from(document.getElementsByClassName("bg-grid"));
+      if (toggleBtn.classList.contains("off")) {
+        bgGrids.forEach(element => element.classList.remove("move-grid"));
+      } else {
+        bgGrids.forEach(element => element.classList.add("move-grid"));
+      }
+    } else if (clickedToggleParent.classList.contains("triangle-animation-toggle__wrapper")) {
+      let triangleWrapper = document.getElementById("triangle__wrapper");
+      if (triangleWrapper.classList.contains("triangle-spin")) {
+        triangleWrapper.classList.remove("triangle-spin");
+      } else {
+        triangleWrapper.classList.add("triangle-spin");
+      }
+    } else if (clickedToggleParent.classList.contains("tape-visibility-toggle__wrapper")) {
+      let calcWrapper = document.getElementById("calc__wrapper");
+      if (calcWrapper.classList.contains("show-tape")) {
+        calcWrapper.classList.add("hide-tape")
+        calcWrapper.classList.remove("show-tape");
+      } else {
+        calcWrapper.classList.add("show-tape");
+        calcWrapper.classList.remove("hide-tape")
+      }
     }
   }
 }

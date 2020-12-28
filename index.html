@@ -8,24 +8,40 @@
 </head>
 <body>
   <header class="header">
-    <div class="grid-animation-toggle__wrapper">
-      <span>Grid animation:</span>
+    <div class="grid-animation-toggle__wrapper header-child toggle__wrapper">
+      <span class="toggle__text">Grid animation:</span>
       <span>ON</span>
-      <div class="toggle__wrapper">
-        <div class="toggle__btn"></div>
+      <div class="grid-animation__toggle-body toggle__body">
+        <div class="grid-animation__toggle toggle__btn on"></div>
       </div>
       <span>OFF</span>
     </div>
-    <div class="grid-animation-speed__wrapper">
+    <div class="triangle-animation-toggle__wrapper header-child toggle__wrapper">
+      <span class="toggle__text">Triangle animation:</span>
+      <span>ON</span>
+      <div class="triangle-animation__toggle-body toggle__body">
+        <div class="triangle-animation__toggle toggle__btn on"></div>
+      </div>
+      <span>OFF</span>
+    </div>
+    <div class="grid-animation-speed__wrapper header-child">
       <form action="#" id="animation-speed-form">
         <input type="text" id="animation-speed__input" class="form-input" placeholder="20" maxlength="4">
         <label for="animation-speed__input">seconds</label>
         <button id="animation-speed__btn" class="form-btn">Update</button>
       </form>
     </div>
+    <div class="tape-visibility-toggle__wrapper header-child toggle__wrapper">
+      <span class="toggle__text">Tape visibility:</span>
+      <span>ON</span>
+      <div class="tape__toggle-body toggle__body">
+        <div class="tape__toggle toggle__btn off"></div>
+      </div>
+      <span>OFF</span>
+    </div>
   </header>
   <main class="main">
-    <div class="calc__wrapper">
+    <div id="calc__wrapper" class="calc__wrapper hide-tape">
       <div id="calc-body" class="calc-body" tabindex=0>
         <input id="calc-read-out" class="calc-read-out" readonly aria-readonly="true" placeholder="0"></input>
           <div class="calc-top-row__wrapper">
@@ -66,7 +82,7 @@
         <div class="sun"></div>
       </div>
       <div class="bg__grid-wrapper top-grid-wrapper">
-        <div class="bg-top-grid move-grid">
+        <div class="bg-grid bg-top-grid move-grid">
           <div class="bg-cell"></div>
           <div class="bg-cell"></div>
           <div class="bg-cell"></div>
@@ -270,7 +286,7 @@
         </div>
       </div>
       <div class="bg__grid-wrapper bottom-grid-wrapper">
-        <div class="bg-bottom-grid move-grid">
+        <div class="bg-grid bg-bottom-grid move-grid">
           <div class="bg-cell"></div>
           <div class="bg-cell"></div>
           <div class="bg-cell"></div>

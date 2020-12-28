@@ -128,10 +128,27 @@ body, h1, h2, h3, h4, h5, h6, p, span, button, input {
   transform: translate(-50%, 50%);
   opacity: 0;
   z-index: 20;
-  animation: 2s linear 3s forwards calc_appear;
+  animation: 2s linear 3s forwards calc_appear__mobile;
 }
 
-@keyframes calc_appear {
+@media screen and (min-width: 600px) {
+  .calc__wrapper {
+    animation: 2s linear 3s forwards calc_appear__desktop;
+  }
+}
+
+@keyframes calc_appear__mobile {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 0%) scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 25%) scale(1);
+  }
+}
+
+@keyframes calc_appear__desktop {
   from {
     opacity: 0;
     transform: translate(-50%, 50%) scale(0);
@@ -143,11 +160,12 @@ body, h1, h2, h3, h4, h5, h6, p, span, button, input {
 }
 
 .calc-body {
-  display: inline-grid;
+  display: grid;
   position: relative;
   border: 2px solid #34e7ea;
   border-radius: .25rem;
   max-width: 290px;
+  margin: 0 auto .5rem;
   padding: .5rem;
   background: rgba(23, 210, 195, .75);
   box-shadow: 0 0 10px 2px rgba(201, 245, 212, 1);
@@ -239,42 +257,114 @@ body, h1, h2, h3, h4, h5, h6, p, span, button, input {
   text-align: left;
 }
 
-/* .calc__wrapper.show-tape {
-  margin-top: -2px;
-} */
-
 .calc__wrapper.show-tape .calc-body {
-  animation: linear .2s forwards shift_calc;
-}
-
-@keyframes shift_calc {
-  from { 
-    transform: translateX(50%);
-  }
-  to   { 
-    transform: translateX(0);
-  }
+  animation: .2s linear .25s forwards shift_calc;
 }
 
 .calc__wrapper.hide-tape .calc-body {
-  animation: .2s linear .25s forwards unshift_calc;
-}
-
-@keyframes unshift_calc {
-  from { 
-    transform: translateX(0);
-  }
-  to   { 
-    transform: translateX(50%);
-  }
+  animation: .2s linear .25s forwards unshift_calc__mobile;
 }
 
 .calc__wrapper.show-tape .calc-tape {
   display: inline-block;
-  animation: .2s linear .25s forwards reveal_tape;
+  animation: .2s linear .25s forwards reveal_tape__mobile;
 }
 
-@keyframes reveal_tape {
+.calc__wrapper.hide-tape .calc-tape {
+  display: inline-block;
+  animation: linear .2s forwards hide_tape__mobile;
+}
+
+@keyframes shift_calc {
+  0% { 
+    background: rgba(23, 210, 195, 1);
+  }
+  50% {
+    background: rgba(23, 210, 195, 1);
+  }
+  75% {
+    background: rgba(23, 210, 195, 1);
+  }
+  100%   { 
+    transform: translateX(0);
+    background: rgba(23, 210, 195, .75);
+  }
+}
+
+@keyframes shift_calc__desktop {
+  0% { 
+    transform: translateX(50%);
+    background: rgba(23, 210, 195, 1);
+  }
+  50% {
+    background: rgba(23, 210, 195, 1);
+  }
+  75% {
+    background: rgba(23, 210, 195, 1);
+  }
+  100%   { 
+    transform: translateX(0);
+    background: rgba(23, 210, 195, .75);
+  }
+}
+
+@keyframes unshift_calc__mobile {
+  0% {
+    background: rgba(23, 210, 195, 1);
+  }
+  50% {
+    background: rgba(23, 210, 195, 1);
+  }
+  75% {
+    background: rgba(23, 210, 195, 1);
+  }
+  100%   { 
+    background: rgba(23, 210, 195, .75);
+  }
+}
+
+@keyframes unshift_calc__desktop {
+  0% { 
+    transform: translateX(0);
+    background: rgba(23, 210, 195, 1);
+  }
+  50% {
+    background: rgba(23, 210, 195, 1);
+  }
+  75% {
+    background: rgba(23, 210, 195, 1);
+  }
+  100%   { 
+    transform: translateX(50%);
+    background: rgba(23, 210, 195, .75);
+  }
+}
+
+@keyframes reveal_tape__mobile {
+  from { 
+    opacity: 0;
+    top: -389px;
+  }
+  to   { 
+    opacity: 1;
+    top: 0;
+  }
+}
+
+@keyframes hide_tape__mobile {
+  from { 
+    display: inline-block;
+    opacity: 1;
+    top: 0;
+  }
+  to   { 
+    display: none;
+    opacity: 0;
+    top: -389px;
+  }
+}
+
+@keyframes reveal_tape__desktop {
   from { 
     opacity: 0;
     left: -290px;
@@ -285,12 +375,7 @@ body, h1, h2, h3, h4, h5, h6, p, span, button, input {
   }
 }
 
-.calc__wrapper.hide-tape .calc-tape {
-  display: inline-block;
-  animation: linear .2s forwards hide_tape;
-}
-
-@keyframes hide_tape {
+@keyframes hide_tape__desktop {
   from { 
     display: inline-block;
     opacity: 1;
@@ -300,6 +385,27 @@ body, h1, h2, h3, h4, h5, h6, p, span, button, input {
     display: none;
     opacity: 0;
     left: -290px;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .calc-body {
+    display: inline-grid;
+    margin: unset;
+  }
+  .calc__wrapper.show-tape .calc-body {
+    animation: linear .2s forwards shift_calc__desktop;
+  }
+  .calc__wrapper.hide-tape .calc-body {
+    animation: .2s linear .25s forwards unshift_calc__desktop;
+  }
+  .calc__wrapper.show-tape .calc-tape {
+    display: inline-block;
+    animation: .2s linear .25s forwards reveal_tape__desktop;
+  }
+  .calc__wrapper.hide-tape .calc-tape {
+    display: inline-block;
+    animation: linear .2s forwards hide_tape__desktop;
   }
 }
 
@@ -361,7 +467,7 @@ body, h1, h2, h3, h4, h5, h6, p, span, button, input {
 }
 
 /* .triangle-side.side-1 {
-  transform: translateY(400px);
+  transform: translateY(600px);
 } */
 
 .triangle-side.side-2 {

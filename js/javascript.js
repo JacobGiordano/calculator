@@ -88,6 +88,7 @@ const newTapeLine = tapeLineData => {
   newLine.classList.add("tape-line");
   newLine.appendChild(newText);
   tapeEl.appendChild(newLine);
+  tapeEl.scrollTop = tapeEl.scrollHeight;
 }
 
 const firstOperation = () => {

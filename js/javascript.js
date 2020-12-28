@@ -49,9 +49,13 @@ const updateDisplay = (clickedValue) => {
     if (clickedValue.toLowerCase() === "backspace") {
       display = display.slice(0, -1);
     } else if (clickedValue === ".") {
-      let splitDisplay = display.split(".");
-      if (splitDisplay.length <= 1) {
+      if (display === "") {
         display += clickedValue;
+      } else {
+        let splitDisplay = display.split(".");
+        if (splitDisplay.length <= 1) {
+          display += clickedValue;
+        }
       }
     }
   } else {

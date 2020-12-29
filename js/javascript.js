@@ -155,7 +155,9 @@ const evalKeyPressed = e => {
   // console.log(e.key);
   let pressed;
 
-  if (e.key === "Enter") {
+  if (e.key === "Tab") {
+    return false;
+  } else if (e.key === "Enter") {
     pressed = document.body.querySelector(`.calc-btn[data-value="="]`);
   } else if (e.key === "*") {
     pressed = document.body.querySelector(`.calc-btn[data-value="x"]`);
@@ -177,15 +179,12 @@ const evalKeyPressed = e => {
 const evalCalcButton = e => {
   evalToggleClick(e);
 
-  const calcBody = document.querySelector(".calc-body");
-  if (calcBody !== document.activeElement) {
-    return;
-  }
-
   let clickedEl;
   let keyPress = evalKeyPressed(e);
   
-  if (keyPress) {
+  if (keyPress === false) {
+    return;
+  } else if (keyPress) {
     clickedEl = keyPress;
     // console.log(clicked);
   } else {
@@ -245,23 +244,44 @@ const evalToggleClick = e => {
           bgGrids.forEach(element => element.classList.add("move-grid"));
         }
       } else if (clickedToggleParent.classList.contains("triangle-animation-toggle__wrapper")) {
-        let triangleWrapper = document.getElementById("triangle__wrapper");
-        if (triangleWrapper.classList.contains("triangle-spin")) {
-          triangleWrapper.classList.remove("triangle-spin");
-        } else {
-          triangleWrapper.classList.add("triangle-spin");
-        }
+        toggleClass("triangle__wrapper", "triangle-spin");
       } else if (clickedToggleParent.classList.contains("tape-visibility-toggle__wrapper")) {
-        let calcWrapper = document.getElementById("calc__wrapper");
-        if (calcWrapper.classList.contains("show-tape")) {
-          calcWrapper.classList.add("hide-tape")
-          calcWrapper.classList.remove("show-tape");
-        } else {
-          calcWrapper.classList.add("show-tape");
-          calcWrapper.classList.remove("hide-tape")
-        }
+        toggleClass("calc__wrapper", "show-tape", "hide-tape");
       }
     }
+  }
+}
+
+const toggleClass = (elementID, className, optionalSecondClass) => {
+  let calcWrapper = document.getElementById(elementID);
+  if (calcWrapper.classList.contains(className)) {
+    optionalSecondClass !== undefined ? calcWrapper.classList.add(optionalSecondClass) : null;
+    calcWrapper.classList.remove(className);
+  } else {
+    calcWrapper.classList.add(className);
+    optionalSecondClass !== undefined ? calcWrapper.classList.remove(optionalSecondClass) : null;
+  }
+}
+
+const updateRangeValue = e => {
+  let clickedRangeParent = e.target.closest(".nav-child");
+  let speed;
+  let clickedRangeParentRange = clickedRangeParent.querySelectorAll(".animation-range-element")[0];
+  if (clickedRangeParent === null) {
+    return;
+  } else {
+    speed = clickedRangeParentRange.value;
+    clickedRangeParent.querySelectorAll(".range-value")[0].textContent = speed;
+  }
+  if (clickedRangeParent.classList.contains("grid-animation-speed__wrapper")) {
+    console.log(`Grid animation speed is: ${speed}`);
+    const bgGrids = document.querySelectorAll(".bg-grid");
+    for (grid of bgGrids) {
+      grid.setAttribute("style", `animation-duration: ${speed}s;`);
+    }
+  } else if (clickedRangeParent.classList.contains("triangle-animation-speed__wrapper")) {
+    console.log(`Triangle animation speed is: ${speed}`);
+    document.getElementById("triangle__wrapper").setAttribute("style", `animation-duration: ${speed}s;`);
   }
 }
 
@@ -283,5 +303,22 @@ const a11yClick = e => {
   }
 }
 
-document.addEventListener("click", evalCalcButton, false);
-document.addEventListener("keydown", evalCalcButton, false);
+const updateAnimation = e => {
+  const gridSpeedForm = document.getElementById("animation-speed-form");
+  gridSpeedForm.onsubmit(e => {
+    e.preventDefault();
+    console.log(e)
+  });
+}
+
+document.addEventListener("click", evalCalcButton);
+document.addEventListener("keydown", evalCalcButton);
+const rangeSliders = document.querySelectorAll(".animation-range-element");
+for (const slider of rangeSliders) {
+  slider.addEventListener("change", updateRangeValue);
+}
+
+// const gridSpeedForm = document.getElementById("grid-animation-speed-form");
+// const triangleSpeedForm = document.getElementById("triangle-animation-speed-form");
+// gridSpeedForm.addEventListener("submit", updateAnimation);
+// triangleSpeedForm.addEventListener("submit", updateAnimation);

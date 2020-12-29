@@ -19,7 +19,7 @@ body {
   display: block;
   background: rgb(22, 16, 34);
   overflow-x: hidden;
-  font-family: 'djb_get_digitalregular';
+  font-family: 'Roboto', sans-serif;
 }
 
 button, input {
@@ -27,38 +27,57 @@ button, input {
   font-size: 1.25rem;
 }
 
-body, h1, h2, h3, h4, h5, h6, p, span, button, input {
-  font-family: 'djb_get_digitalregular';
-}
-
-/* ===== HEADER ===== */
-.header {
+/* ===== NAV ===== */
+.nav {
   display: flex;
   position: fixed;
   background: rgba(0, 0, 0, .6);
-  color: white;
-  width: 100%;
-  padding: 1rem;
-  justify-content: space-between;
-  align-items: center;
+  color: #fff;
+  width: auto;
+  height: 100%;
+  padding: 1rem 2rem;
   font-size: 1.25rem;
   letter-spacing: 2px;
   box-shadow: 0 0 20px 20px rgba(0, 0, 0, .6);
-  top: 0;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
   z-index: 100;
 }
 
-.header-child {
-  display: inline-block;
+.close-nav {
+  display: block;
+  position: relative;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid #fff;
+  margin-bottom: .5rem;
+  padding: 14px 0 0 2px;
+  font-size: 2.25rem;
+  text-align: center;
+  line-height: 0;
+  left: 100%;
+  top: 0;
+  cursor: pointer;
+}
+
+.close-nav:before {
+  content: "\00d7";
+}
+
+.nav-child {
+  display: block;
+  width: 100%;
+  margin-bottom: 3rem;
 }
 
 .toggle__wrapper {
   cursor: pointer;
 }
 
-.toggle__text {
+.toggle__text, .nav-child__title {
   display: block;
-  margin-bottom: .25rem;
+  margin-bottom: .5rem;
 }
 
 .toggle__body {
@@ -104,13 +123,11 @@ body, h1, h2, h3, h4, h5, h6, p, span, button, input {
   }
 }
 
-.grid-animation-speed__wrapper {
+.form-wrapper {
   display: inline-block;
-  font-family: 'djb_get_digitalregular';
-  /* margin-top: .5rem; */
 }
 
-#animation-speed__input {
+.form-input {
   width: 3.5rem;
 }
 
@@ -190,12 +207,12 @@ body, h1, h2, h3, h4, h5, h6, p, span, button, input {
   border-radius: .25rem;
   color: #008080;
   padding: 1rem .75rem .75rem;
+  font-family: 'djb_get_digitalregular';
 }
 
 .calc-read-out {
   grid-area: readout;
   position: relative;
-  font-family: 'djb_get_digitalregular';
   font-size: 2.5rem;
   text-align: right;
 }

@@ -4,34 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calculatronic</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-  <header class="header">
-    <div class="grid-animation-toggle__wrapper header-child toggle__wrapper" tabindex="0">
-      <span class="toggle__text">Grid animation:</span>
-      <span>ON</span>
-      <div class="grid-animation__toggle-body toggle__body">
-        <div class="grid-animation__toggle toggle__btn on"></div>
-      </div>
-      <span>OFF</span>
-    </div>
-    <div class="triangle-animation-toggle__wrapper header-child toggle__wrapper" tabindex="0">
-      <span class="toggle__text">Triangle animation:</span>
-      <span>ON</span>
-      <div class="triangle-animation__toggle-body toggle__body">
-        <div class="triangle-animation__toggle toggle__btn on"></div>
-      </div>
-      <span>OFF</span>
-    </div>
-    <div class="grid-animation-speed__wrapper header-child">
-      <form action="#" id="animation-speed-form">
-        <input type="text" id="animation-speed__input" class="form-input" placeholder="20" maxlength="4">
-        <label for="animation-speed__input">seconds</label>
-        <button id="animation-speed__btn" class="form-btn">Update</button>
-      </form>
-    </div>
-    <div class="tape-visibility-toggle__wrapper header-child toggle__wrapper" tabindex="0">
+  <nav class="nav">
+    <div id="close-nav" class="close-nav"></div>
+    <div class="tape-visibility-toggle__wrapper nav-child toggle__wrapper" tabindex="0">
       <span class="toggle__text">Tape visibility:</span>
       <span>ON</span>
       <div class="tape__toggle-body toggle__body">
@@ -39,7 +19,37 @@
       </div>
       <span>OFF</span>
     </div>
-  </header>
+    <div class="grid-animation-toggle__wrapper nav-child toggle__wrapper" tabindex="0">
+      <span class="toggle__text">Grid animation:</span>
+      <span>ON</span>
+      <div class="grid-animation__toggle-body toggle__body">
+        <div class="grid-animation__toggle toggle__btn on"></div>
+      </div>
+      <span>OFF</span>
+    </div>
+    <div class="grid-animation-speed__wrapper form-wrapper nav-child">
+      <label for="grid-animation-speed" class="nav-child__title">Grid animation speed</label>
+      <input type="range" name="grid-animation-speed" id="grid-animation-speed" class="animation-range-element" value="20" max="20" step=".1">
+      <div class="range-value__wrapper">
+        <span id="grid-animation-range-value" class="range-value">20</span> seconds
+      </div>
+    </div>
+    <div class="triangle-animation-toggle__wrapper nav-child toggle__wrapper" tabindex="0">
+      <span class="toggle__text">Triangle animation:</span>
+      <span>ON</span>
+      <div class="triangle-animation__toggle-body toggle__body">
+        <div class="triangle-animation__toggle toggle__btn on"></div>
+      </div>
+      <span>OFF</span>
+    </div>
+    <div class="triangle-animation-speed__wrapper form-wrapper nav-child">
+      <label for="triangle-animation-speed" class="nav-child__title">Triangle animation speed</label>
+      <input type="range" name="triangle-animation-speed" id="triangle-animation-speed" class="animation-range-element" value="80" max="80" step=".1">
+      <div class="range-value__wrapper">
+        <span id="triangle-animation-range-value" class="range-value">80</span> seconds
+      </div>
+    </div>
+  </nav>
   <main class="main">
     <div id="calc__wrapper" class="calc__wrapper hide-tape">
       <div id="calc-body" class="calc-body" tabindex=0>

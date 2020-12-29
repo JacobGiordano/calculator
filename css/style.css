@@ -217,6 +217,15 @@ body, h1, h2, h3, h4, h5, h6, p, span, button, input {
 .calc-btn {
   text-align: center;
   cursor: pointer;
+  transition: all ease-in-out .1s;
+}
+
+.calc-btn:hover {
+  outline: none;
+  background: rgb(159 10 193);
+  box-shadow: 0 0 8px 8px #d650e3, inset 0 0 5px 1px #d650e3;
+  color: #e4fbe8;
+  border: 1px solid #ff36d4;
 }
 
 .calc-num-btn[data-value="0"] {

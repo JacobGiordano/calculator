@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   var triangleWrapper = document.getElementById("triangle__wrapper");
   var timer = setTimeout(() => {triangleWrapper.classList.add("triangle-spin")}, 5500);
   timer;
+  document.querySelector('.calc-body').focus();
 });
 
 const add = (a, b) => a + b;
@@ -175,6 +176,12 @@ const evalKeyPressed = e => {
 
 const evalCalcButton = e => {
   evalToggleClick(e);
+
+  const calcBody = document.querySelector(".calc-body");
+  if (calcBody !== document.activeElement) {
+    return;
+  }
+
   let clickedEl;
   let keyPress = evalKeyPressed(e);
   
@@ -217,44 +224,64 @@ const evalCalcButton = e => {
 }
 
 const evalToggleClick = e => {
-  let clickedToggleParent = e.target.closest(".toggle__wrapper");
-  if (clickedToggleParent === null) {
-    return;
-  } else {
-    let toggleBtn = clickedToggleParent.querySelectorAll(".toggle__btn")[0];
-    if (toggleBtn.classList.contains("on")) {
-      toggleBtn.classList.remove("on");
-      toggleBtn.classList.add("off");
+  if (a11yClick(e) === true) {
+    let clickedToggleParent = e.target.closest(".toggle__wrapper");
+    if (clickedToggleParent === null) {
+      return;
     } else {
-      toggleBtn.classList.remove("off");
-      toggleBtn.classList.add("on");
-    }
-    if (clickedToggleParent.classList.contains("grid-animation-toggle__wrapper")) {
-      let bgGrids = Array.from(document.getElementsByClassName("bg-grid"));
-      if (toggleBtn.classList.contains("off")) {
-        bgGrids.forEach(element => element.classList.remove("move-grid"));
+      let toggleBtn = clickedToggleParent.querySelectorAll(".toggle__btn")[0];
+      if (toggleBtn.classList.contains("on")) {
+        toggleBtn.classList.remove("on");
+        toggleBtn.classList.add("off");
       } else {
-        bgGrids.forEach(element => element.classList.add("move-grid"));
+        toggleBtn.classList.remove("off");
+        toggleBtn.classList.add("on");
       }
-    } else if (clickedToggleParent.classList.contains("triangle-animation-toggle__wrapper")) {
-      let triangleWrapper = document.getElementById("triangle__wrapper");
-      if (triangleWrapper.classList.contains("triangle-spin")) {
-        triangleWrapper.classList.remove("triangle-spin");
-      } else {
-        triangleWrapper.classList.add("triangle-spin");
-      }
-    } else if (clickedToggleParent.classList.contains("tape-visibility-toggle__wrapper")) {
-      let calcWrapper = document.getElementById("calc__wrapper");
-      if (calcWrapper.classList.contains("show-tape")) {
-        calcWrapper.classList.add("hide-tape")
-        calcWrapper.classList.remove("show-tape");
-      } else {
-        calcWrapper.classList.add("show-tape");
-        calcWrapper.classList.remove("hide-tape")
+      if (clickedToggleParent.classList.contains("grid-animation-toggle__wrapper")) {
+        let bgGrids = Array.from(document.getElementsByClassName("bg-grid"));
+        if (toggleBtn.classList.contains("off")) {
+          bgGrids.forEach(element => element.classList.remove("move-grid"));
+        } else {
+          bgGrids.forEach(element => element.classList.add("move-grid"));
+        }
+      } else if (clickedToggleParent.classList.contains("triangle-animation-toggle__wrapper")) {
+        let triangleWrapper = document.getElementById("triangle__wrapper");
+        if (triangleWrapper.classList.contains("triangle-spin")) {
+          triangleWrapper.classList.remove("triangle-spin");
+        } else {
+          triangleWrapper.classList.add("triangle-spin");
+        }
+      } else if (clickedToggleParent.classList.contains("tape-visibility-toggle__wrapper")) {
+        let calcWrapper = document.getElementById("calc__wrapper");
+        if (calcWrapper.classList.contains("show-tape")) {
+          calcWrapper.classList.add("hide-tape")
+          calcWrapper.classList.remove("show-tape");
+        } else {
+          calcWrapper.classList.add("show-tape");
+          calcWrapper.classList.remove("hide-tape")
+        }
       }
     }
   }
 }
 
+const a11yClick = e => {
+  // from: https://karlgroves.com/2014/11/24/ridiculously-easy-trick-for-keyboard-accessibility
+  if(e.type === 'click'){
+    return true;
+  }
+  else if(e.type === 'keydown'){
+    if ((e.key === " ") || (e.key === "Enter")) {
+      if (e.key === " ") {
+        e.preventDefault();
+      }
+      return true;
+    }
+  }
+  else {
+    return false;
+  }
+}
+
 document.addEventListener("click", evalCalcButton, false);
-document.addEventListener("keyup", evalCalcButton, false);
+document.addEventListener("keydown", evalCalcButton, false);

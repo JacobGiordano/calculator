@@ -377,7 +377,7 @@ button, input {
   transition: all ease-in-out .1s;
 }
 
-.calc-btn:hover {
+.calc-btn:hover, .clicked {
   color: #e4fbe8;
   background: #de1193;
   box-shadow: 0 0 16px 8px rgb(243 101 175), inset 0 0 0px 1px rgba(255, 255, 255, .1), inset 0 0 8px 2px #fd98bb;

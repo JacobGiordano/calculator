@@ -159,7 +159,7 @@ const evalKeyPressed = e => {
 
   if (e.key === "Tab") {
     return false;
-  } else if (e.key === "Enter" && document.querySelector('.calc-body').focus()) {
+  } else if (e.key === "Enter") {
     pressed = document.body.querySelector(`.calc-btn[data-value="="]`);
   } else if (e.key === "*") {
     pressed = document.body.querySelector(`.calc-btn[data-value="x"]`);
@@ -169,8 +169,10 @@ const evalKeyPressed = e => {
     pressed = document.body.querySelector(`.calc-btn[data-value="percent"]`);
   } else if (e.key === "p" || e.key === "n") {
     pressed = document.body.querySelector(`.calc-btn[data-value="positive, negative"]`);
-  } else if (e.key === "Backspace" || e.key === ".") {
+  } else if (e.key === "Backspace") {
+  } else if (e.key === ".") {
     updateDisplay(e.key);
+    pressed = document.body.querySelector(`.calc-btn[data-value="${e.key}"]`);
   } else if (e.key === "m") {
     document.getElementById("nav-btn").click();
   } else if (e.key === "t") {
@@ -179,7 +181,18 @@ const evalKeyPressed = e => {
     pressed = document.body.querySelector(`.calc-btn[data-value="${e.key}"]`);
   }
   // console.log(pressed);
+  showClick(pressed, 100);
   return pressed;
+}
+
+const showClick = (element, timeoutDuration) => {
+  if (element !== null & element !== undefined) {
+    element.classList.add("clicked");
+    var clickTimer = setTimeout(() => {
+      element.classList.remove("clicked");
+    }, timeoutDuration);
+    clickTimer;
+  }
 }
 
 const evalCalcButton = e => {

@@ -5,48 +5,64 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calculatronic</title>
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;600;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-  <nav id="nav" class="nav closed">
-    <div id="close-nav" class="close-nav" tabindex="0"></div>
-    <div class="tape-visibility-toggle__wrapper nav-child toggle__wrapper" tabindex="0">
-      <span class="toggle__text">Tape visibility:</span>
-      <span>ON</span>
-      <div class="tape__toggle-body toggle__body">
-        <div class="tape__toggle toggle__btn off"></div>
+  <nav id="nav" class="nav initial">
+    <div id="nav-btn" class="nav-btn" tabindex="0"></div>
+    <div id="nav__inner-wrapper" class="nav__inner-wrapper" tabindex="0">
+      <div id="keyboard-shortcuts">
+        <span class="nav__title">Keyboard Shortcuts</span>
+        <ul id="keyboard-shortcuts__list" class="keyboard-shortcuts__list">
+          <li class="nav-child">Open/close menu: <span class="hotkey">m</span></li>
+          <li class="nav-child">Positive/negative: <span class="hotkey">n</span> or <span class="hotkey">p</span></li>
+          <li class="nav-child">All clear (AC): <span class="hotkey">a</span></li>
+          <li class="nav-child">Get result: <span class="hotkey">enter</span> or <span class="hotkey">return</span></li>
+          <li class="nav-child">Convert to %: <span class="hotkey">shift</span> + <span class="hotkey">5</span></li>
+          <li class="nav-child">Hide/show tape: <span class="hotkey">t</span></li>
+        </ul>
       </div>
-      <span>OFF</span>
-    </div>
-    <div class="grid-animation-toggle__wrapper nav-child toggle__wrapper" tabindex="0">
-      <span class="toggle__text">Grid animation:</span>
-      <span>ON</span>
-      <div class="grid-animation__toggle-body toggle__body">
-        <div class="grid-animation__toggle toggle__btn on"></div>
-      </div>
-      <span>OFF</span>
-    </div>
-    <div class="grid-animation-speed__wrapper form-wrapper nav-child">
-      <label for="grid-animation-speed" class="nav-child__title">Grid animation speed</label>
-      <input type="range" name="grid-animation-speed" id="grid-animation-speed" class="animation-range-element" value="20" max="20" step=".1">
-      <div class="range-value__wrapper">
-        <span id="grid-animation-range-value" class="range-value">20</span> seconds
-      </div>
-    </div>
-    <div class="triangle-animation-toggle__wrapper nav-child toggle__wrapper" tabindex="0">
-      <span class="toggle__text">Triangle animation:</span>
-      <span>ON</span>
-      <div class="triangle-animation__toggle-body toggle__body">
-        <div class="triangle-animation__toggle toggle__btn on"></div>
-      </div>
-      <span>OFF</span>
-    </div>
-    <div class="triangle-animation-speed__wrapper form-wrapper nav-child">
-      <label for="triangle-animation-speed" class="nav-child__title">Triangle animation speed</label>
-      <input type="range" name="triangle-animation-speed" id="triangle-animation-speed" class="animation-range-element" value="80" max="80" step=".1">
-      <div class="range-value__wrapper">
-        <span id="triangle-animation-range-value" class="range-value">80</span> seconds
+      <div id="animation-controls">
+        <span class="nav__title">Animation Controls</span>
+        <div class="tape-visibility-toggle__wrapper nav-child toggle__wrapper" tabindex="0">
+          <span class="toggle__text">Tape visibility:</span>
+          <span>ON</span>
+          <div class="tape__toggle-body toggle__body">
+            <div class="tape__toggle toggle__btn off"></div>
+          </div>
+          <span>OFF</span>
+        </div>
+        <div class="grid-animation-toggle__wrapper nav-child toggle__wrapper" tabindex="0">
+          <span class="toggle__text">Grid animation:</span>
+          <span>ON</span>
+          <div class="grid-animation__toggle-body toggle__body">
+            <div class="grid-animation__toggle toggle__btn on"></div>
+          </div>
+          <span>OFF</span>
+        </div>
+        <div class="grid-animation-speed__wrapper form-wrapper nav-child">
+          <label for="grid-animation-speed" class="nav-child__title">Grid animation speed</label>
+          <input type="range" name="grid-animation-speed" id="grid-animation-speed" class="animation-range-element" value="20" max="20" step=".1">
+          <div class="range-value__wrapper">
+            <span id="grid-animation-range-value" class="range-value">20</span> seconds
+          </div>
+        </div>
+        <div class="triangle-animation-toggle__wrapper nav-child toggle__wrapper" tabindex="0">
+          <span class="toggle__text">Triangle animation:</span>
+          <span>ON</span>
+          <div class="triangle-animation__toggle-body toggle__body">
+            <div class="triangle-animation__toggle toggle__btn on"></div>
+          </div>
+          <span>OFF</span>
+        </div>
+        <div class="triangle-animation-speed__wrapper form-wrapper nav-child">
+          <label for="triangle-animation-speed" class="nav-child__title">Triangle animation speed</label>
+          <input type="range" name="triangle-animation-speed" id="triangle-animation-speed" class="animation-range-element" value="80" max="80" step=".1">
+          <div class="range-value__wrapper">
+            <span id="triangle-animation-range-value" class="range-value">80</span> seconds
+          </div>
+        </div>
       </div>
     </div>
   </nav>

@@ -170,6 +170,8 @@ const evalKeyPressed = e => {
   } else if (e.key === "p" || e.key === "n") {
     pressed = document.body.querySelector(`.calc-btn[data-value="positive, negative"]`);
   } else if (e.key === "Backspace") {
+    updateDisplay(e.key);
+    pressed = document.getElementById("calc-read-out");
   } else if (e.key === ".") {
     updateDisplay(e.key);
     pressed = document.body.querySelector(`.calc-btn[data-value="${e.key}"]`);

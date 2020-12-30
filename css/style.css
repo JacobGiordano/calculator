@@ -377,11 +377,11 @@ button, input {
 }
 
 .calc-btn:hover {
+  background: #E81656;
+  color: #fff;
+  border: 1px solid #fff;
   outline: none;
-  background: rgb(159 10 193);
-  box-shadow: 0 0 8px 8px #d650e3, inset 0 0 5px 1px #d650e3;
-  color: #e4fbe8;
-  border: 1px solid #ff36d4;
+  box-shadow: 0 0 20px 10px rgba(250, 3, 140, .75), inset 0 0 0px 1px rgba(255, 255, 255, .1), inset 0 0 20px 6px #ff2694;
 }
 
 .calc-num-btn[data-value="0"] {

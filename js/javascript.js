@@ -253,13 +253,13 @@ const evalToggleClick = e => {
 }
 
 const toggleClass = (elementID, className, optionalSecondClass) => {
-  let calcWrapper = document.getElementById(elementID);
-  if (calcWrapper.classList.contains(className)) {
-    optionalSecondClass !== undefined ? calcWrapper.classList.add(optionalSecondClass) : null;
-    calcWrapper.classList.remove(className);
+  let element = document.getElementById(elementID);
+  if (element.classList.contains(className)) {
+    optionalSecondClass !== undefined ? element.classList.add(optionalSecondClass) : null;
+    element.classList.remove(className);
   } else {
-    calcWrapper.classList.add(className);
-    optionalSecondClass !== undefined ? calcWrapper.classList.remove(optionalSecondClass) : null;
+    element.classList.add(className);
+    optionalSecondClass !== undefined ? element.classList.remove(optionalSecondClass) : null;
   }
 }
 
@@ -318,6 +318,10 @@ for (const slider of rangeSliders) {
   slider.addEventListener("change", updateRangeValue);
 }
 
+const closeNavBtn = document.getElementById("close-nav");
+closeNavBtn.addEventListener("click", (e) => {
+  toggleClass("nav", "closed", "open");
+});
 // const gridSpeedForm = document.getElementById("grid-animation-speed-form");
 // const triangleSpeedForm = document.getElementById("triangle-animation-speed-form");
 // gridSpeedForm.addEventListener("submit", updateAnimation);

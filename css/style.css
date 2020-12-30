@@ -42,27 +42,74 @@ button, input {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+  left: -370px;
   z-index: 100;
+}
+
+.nav.open {
+  animation: linear .1s forwards open_nav;
+}
+
+@keyframes open_nav {
+  from {
+    left: -370px;
+  }
+  to   {
+    left: 0;
+  }
+}
+
+.nav.closed {
+  animation: linear .1s forwards close_nav;
+}
+
+@keyframes close_nav {
+  from {
+    left: 0;
+  }
+  to   {
+    left: -370px;
+  }
 }
 
 .close-nav {
   display: block;
   position: relative;
+  background: #E81656;
   width: 2rem;
   height: 2rem;
   border: 1px solid #fff;
   margin-bottom: .5rem;
-  padding: 14px 0 0 2px;
   font-size: 2.25rem;
   text-align: center;
-  line-height: 0;
   left: 100%;
   top: 0;
   cursor: pointer;
+  transition: all ease-in .1s;
+}
+
+.close-nav:hover, .close-nav:focus {
+  outline: none;
+  box-shadow: 0 0 20px 10px rgba(250, 3, 140, .75), inset 0 0 0px 1px rgba(255, 255, 255, .1), inset 0 0 20px 6px #ff2694;
 }
 
 .close-nav:before {
+  content: "\2630";
+  position: relative;
+  left: 1px;
+  top: -7px;
+  font-size: 1.5rem;
+}
+
+.nav.closed .close-nav {
+  left: 354px;
+}
+
+.nav.open .close-nav:before {
   content: "\00d7";
+  left: 1px;
+  top: -3px;
+  font-size: unset;
 }
 
 .nav-child {

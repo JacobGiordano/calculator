@@ -49,7 +49,7 @@ const updateDisplay = (clickedValue) => {
     display = "";
   }
   if (isNaN(Number(clickedValue))) {
-    if (clickedValue.toLowerCase() === "backspace") {
+    if (clickedValue.toLowerCase() === "backspace" || clickedValue.toLowerCase() === "delete") {
       display = display.slice(0, -1);
     } else if (clickedValue === ".") {
       if (display === "") {
@@ -169,7 +169,7 @@ const evalKeyPressed = e => {
     pressed = document.body.querySelector(`.calc-btn[data-value="percent"]`);
   } else if (e.key === "p" || e.key === "n") {
     pressed = document.body.querySelector(`.calc-btn[data-value="positive, negative"]`);
-  } else if (e.key === "Backspace") {
+  } else if (e.key === "Backspace" || e.key === "Delete") {
     updateDisplay(e.key);
     pressed = document.getElementById("calc-read-out");
   } else if (e.key === ".") {

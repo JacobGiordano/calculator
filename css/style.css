@@ -126,6 +126,7 @@ button, input {
   display: block;
   position: relative;
   background: #E81656;
+  /* background: #d62d98; */
   width: 2rem;
   height: 2rem;
   border: 1px solid #fff;
@@ -377,11 +378,10 @@ button, input {
 }
 
 .calc-btn:hover {
-  background: #E81656;
-  color: #fff;
-  border: 1px solid #fff;
-  outline: none;
-  box-shadow: 0 0 20px 10px rgba(250, 3, 140, .75), inset 0 0 0px 1px rgba(255, 255, 255, .1), inset 0 0 20px 6px #ff2694;
+  color: #e4fbe8;
+  background: #de1193;
+  box-shadow: 0 0 16px 8px rgb(243 101 175), inset 0 0 0px 1px rgba(255, 255, 255, .1), inset 0 0 8px 2px #fd98bb;
+  border: 1px solid #e5fbe8;
 }
 
 .calc-num-btn[data-value="0"] {

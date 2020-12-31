@@ -49,7 +49,7 @@ button, input {
 .nav__inner-wrapper {
   display: block;
   width: 100%;
-  padding-left: 2rem;
+  padding: 1.75rem 0 0 2rem;
   overflow-x: scroll;
 }
 
@@ -126,10 +126,10 @@ button, input {
   display: block;
   position: relative;
   background: #E81656;
-  /* background: #d62d98; */
   width: 2rem;
   height: 2rem;
   border: 1px solid #fff;
+  border-radius: 2px;
   margin-bottom: .5rem;
   font-size: 2.25rem;
   text-align: center;
@@ -179,8 +179,9 @@ button, input {
   font-size: 1.5rem;
   font-weight: 400;
   margin-bottom: 2.5rem;
-  padding-bottom: .5rem;
-  border-bottom: 1px solid #fff;
+  padding: .75rem;
+  border: 1px solid #fff;
+  border-radius: 4px;
 }
 
 .nav-child {
@@ -313,6 +314,10 @@ button, input {
     opacity: 1;
     transform: translate(-50%, 50%) scale(1);
   }
+}
+
+.calc__inner-wrapper {
+  transition: all ease-in-out .2s;
 }
 
 .calc-body {
@@ -590,11 +595,15 @@ button, input {
   height: 25%;
   left: 50%;
   top: 38%;
-  transition: all ease-in-out 2s;
   transform-origin: center;
   transform: translate(-50%);
-  z-index: 5;
+  transition: all ease-in-out 2s;
   opacity: 0;
+  z-index: 5;
+}
+
+.triangle__inner-wrapper {
+  transition: all ease-in-out .2s;
 }
 
 .fade-in {
@@ -659,7 +668,19 @@ button, input {
   left: 50%;
   top: 31.5%;
   transform: translate(-50%);
+  transition: all ease-in-out .2s;
   z-index: 1;
+}
+
+.sun-block {
+  display: block;
+  position: absolute;
+  width: 170%;
+  height: 200px;
+  background: #160f22;
+  left: 50%;
+  transform: translate(-50%, 295px);
+  box-shadow: 0 -52px 40px -60px #ff005e;
 }
 
 .sun {
@@ -668,7 +689,12 @@ button, input {
   height: 23rem;
   border-radius: 50%;
   box-shadow: 0 0 40px 30px rgba(250, 3, 140, .75), inset 0 0 0px 1px rgba(255, 255, 255, .1), inset 0 0 20px 6px #ff2694;
+  transition: all ease-in-out .2s;
   z-index: 3;
+}
+
+.bg__grid-wrapper {
+  transition: all ease-in-out .2s;
 }
 
 .bg__grid-wrapper.top-grid-wrapper:before, .bg__grid-wrapper.bottom-grid-wrapper:before {
@@ -691,7 +717,7 @@ button, input {
   max-height: 460px;
   /* transform: perspective(340px) rotateX(-135deg) rotateZ(180deg) translateZ(-140px); */
   transform: perspective(340px) rotateX(-135deg) rotateZ(180deg) translateZ(-39px);
-  /* z-index: 1; */
+  z-index: 2;
 }
 
 .bg__grid-wrapper.bottom-grid-wrapper:after {
@@ -738,4 +764,10 @@ button, input {
   to   { 
     transform: translateY(12.5%); 
   }
+}
+
+/* ===== UTILITY CLASSES ===== */
+
+.no-opacity {
+  opacity: 0;
 }

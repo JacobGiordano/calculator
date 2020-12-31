@@ -179,6 +179,16 @@ const evalKeyPressed = e => {
     document.getElementById("nav-btn").click();
   } else if (e.key === "t") {
     document.querySelector(".tape-visibility-toggle__wrapper").click();
+  } else if (e.key === "h") {
+    document.querySelector(".calculator-visibility-toggle__wrapper").click();
+  }  else if (e.key === "s") {
+    document.querySelector(".sun-visibility-toggle__wrapper").click();
+  }  else if (e.key === "d") {
+    document.querySelector(".triangle-visibility-toggle__wrapper").click();
+  }  else if (e.key === "f") {
+    document.querySelector(".top-grid-visibility-toggle__wrapper").click();
+  }  else if (e.key === "g") {
+    document.querySelector(".bottom-grid-visibility-toggle__wrapper").click();
   } else {
     pressed = document.body.querySelector(`.calc-btn[data-value="${e.key}"]`);
   }
@@ -268,6 +278,16 @@ const evalToggleClick = e => {
         toggleClass("triangle__wrapper", "triangle-spin");
       } else if (clickedToggleParent.classList.contains("tape-visibility-toggle__wrapper")) {
         toggleClass("calc__wrapper", "show-tape", "hide-tape");
+      } else if (clickedToggleParent.classList.contains("calculator-visibility-toggle__wrapper")) {
+        toggleClass("calc__inner-wrapper", "no-opacity");
+      } else if (clickedToggleParent.classList.contains("sun-visibility-toggle__wrapper")) {
+        toggleClass("sun-wrapper", "no-opacity");
+      } else if (clickedToggleParent.classList.contains("triangle-visibility-toggle__wrapper")) {
+        toggleClass("triangle__inner-wrapper", "no-opacity");
+      } else if (clickedToggleParent.classList.contains("top-grid-visibility-toggle__wrapper")) {
+        toggleClass("top-grid-wrapper", "no-opacity");
+      } else if (clickedToggleParent.classList.contains("bottom-grid-visibility-toggle__wrapper")) {
+        toggleClass("bottom-grid-wrapper", "no-opacity");
       }
     }
   }

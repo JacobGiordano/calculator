@@ -77,16 +77,13 @@ const positiveNegative = () => {
 }
 
 const convertToPercent = () => {
-  // console.log(`Starting display val = ${display}`);
   if (display === undefined && a !== undefined && b === undefined) {
     display = a;
   }
   if (display !== undefined)  {
     display = (Number(display) * .01).toString();
-    // console.log(display);
     readoutEl.value = display.slice(0, 12);
   }
-  // console.log(`Ending display val = ${display}`);
 }
 
 const newTapeLine = tapeLineData => {
@@ -99,25 +96,18 @@ const newTapeLine = tapeLineData => {
 }
 
 const firstOperation = () => {
-  // console.log("a === undefined || a === ''");
   a = Number(display);
-  // console.log(`a = ${a}`);
   display = undefined;
 }
 
 const secondOperation = () => {
-  // console.log(`a !== undefined; a = ${a}`);
-  // console.log(`${a} ${clickedFunction} ${b} = ${result}`);
   if (display !== "" && display !== undefined && !isNaN(display)) {
     b = Number(display);
     if (b === 0 && clickedFunction === "/") {
       readoutEl.value = "No can do";
       return;
     }
-    // console.log("b === undefined");
-    // console.log(`a = ${a}; b = ${b}`);
     result = operate(clickedFunction, a, b);
-    // console.log(`${a} ${clickedFunction} ${b} = ${result}`);
     readoutEl.value = result.toString().slice(0, 12);
     newTapeLine(`${a} ${clickedFunction} ${b} = ${result.toString().slice(0, 12)}`);
     display = undefined;
@@ -127,16 +117,13 @@ const secondOperation = () => {
 }
 
 const returnFinalResult = () => {
-  // console.log("clicked equals");
   b = Number(display);
   if (b === 0 && clickedFunction === "/") {
     readoutEl.value = "No can do";
     return;
   }
-  // console.log(`a = ${a}; b = ${b}`);
   if (!isNaN(a) && !isNaN(b) && a !== undefined && b !== undefined) {
     result = operate(clickedFunction, a, b);
-    // console.log(`${a} ${clickedFunction} ${b} = ${result}`);
     display = result.toString().slice(0, 12);
     readoutEl.value = display;
     newTapeLine(`${a} ${clickedFunction} ${b} = ${result.toString().slice(0, 12)}`);
@@ -154,7 +141,6 @@ const returnFinalResult = () => {
 }
 
 const evalKeyPressed = e => {
-  // console.log(e.key);
   let pressed;
 
   if (e.key === "Tab") {
@@ -192,7 +178,6 @@ const evalKeyPressed = e => {
   } else {
     pressed = document.body.querySelector(`.calc-btn[data-value="${e.key}"]`);
   }
-  // console.log(pressed);
   showClick(pressed, 100);
   return pressed;
 }
@@ -217,7 +202,6 @@ const evalCalcButton = e => {
     return;
   } else if (keyPress) {
     clickedEl = keyPress;
-    // console.log(clicked);
   } else {
     clickedEl = e.target;
   }
@@ -246,7 +230,6 @@ const evalCalcButton = e => {
         secondOperation();
       }
       clickedFunction = clickedValue;
-      // console.log(`clickedFunction = ${clickedFunction}`);
     } else if (clickedValue === "=") {
       returnFinalResult();
     }

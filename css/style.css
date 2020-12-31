@@ -646,7 +646,6 @@ button, input {
   top: 38%;
   transform-origin: center;
   transform: translate(-50%);
-  transition: all ease-in-out 2s;
   opacity: 0;
   z-index: 5;
 }

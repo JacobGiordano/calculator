@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   var triangleWrapper = document.getElementById("triangle__wrapper");
   var triangleTimer = setTimeout(() => {
+    triangleWrapper.classList.remove("fade-delay--1");
     triangleWrapper.classList.add("triangle-spin");
   }, 5500);
   triangleTimer;

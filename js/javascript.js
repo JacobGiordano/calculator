@@ -167,13 +167,15 @@ const evalKeyPressed = e => {
     document.querySelector(".tape-visibility-toggle__wrapper").click();
   } else if (e.key === "h") {
     document.querySelector(".calculator-visibility-toggle__wrapper").click();
-  }  else if (e.key === "s") {
+  } else if (e.key === "j") {
+    document.querySelector(".title-visibility-toggle__wrapper").click();
+  } else if (e.key === "s") {
     document.querySelector(".sun-visibility-toggle__wrapper").click();
-  }  else if (e.key === "d") {
+  } else if (e.key === "d") {
     document.querySelector(".triangle-visibility-toggle__wrapper").click();
-  }  else if (e.key === "f") {
+  } else if (e.key === "f") {
     document.querySelector(".top-grid-visibility-toggle__wrapper").click();
-  }  else if (e.key === "g") {
+  } else if (e.key === "g") {
     document.querySelector(".bottom-grid-visibility-toggle__wrapper").click();
   } else {
     pressed = document.body.querySelector(`.calc-btn[data-value="${e.key}"]`);
@@ -263,6 +265,8 @@ const evalToggleClick = e => {
         toggleClass("calc__wrapper", "show-tape", "hide-tape");
       } else if (clickedToggleParent.classList.contains("calculator-visibility-toggle__wrapper")) {
         toggleClass("calc__inner-wrapper", "no-opacity");
+      } else if (clickedToggleParent.classList.contains("title-visibility-toggle__wrapper")) {
+        toggleClass("page-title__wrapper", "no-opacity");
       } else if (clickedToggleParent.classList.contains("sun-visibility-toggle__wrapper")) {
         toggleClass("sun-wrapper", "no-opacity");
       } else if (clickedToggleParent.classList.contains("triangle-visibility-toggle__wrapper")) {

@@ -33,26 +33,31 @@ body {
   font-weight: 300;
 }
 
-.page-title {
+.page-title__wrapper {
   display: block;
   position: absolute;
+  left: 50%;
+  transform: translate(-50%, 3.5rem) perspective(60px) rotateX(15deg);
+  transition: all ease-in-out .2s;
+  z-index: 2;
+}
+
+.page-title {
   color: #fff;
   font-family: 'rocket_rinderregular';
   font-size: 2rem;
   text-align: center;
   letter-spacing: 3px;
-  left: 50%;
-  transform: translate(-50%, 3.5rem) perspective(60px) rotateX(15deg);
   background-color: #fff;
-  background-image: linear-gradient(#fff 14%, #084fa7 16%, #83e6f1 40%, #cff5f9 43%, #160f22 49%, #2d076d 0%, #d80798 76%, #d80798 0%, #fff 84%);
+  background-image: linear-gradient(#084fa7 14%, #084fa7 16%, #83e6f1 40%, #cff5f9 43%, #160f22 49%, #2d076d 0%, #d80798 76%, #d80798);
   background-size: 100%;
+  opacity: 0;
   -webkit-background-clip: text;
   -moz-background-clip: text;
   -webkit-text-fill-color: transparent; 
   -moz-text-fill-color: transparent;
   -webkit-filter: drop-shadow(0 2px #2d076d) drop-shadow(0 0 8px rgba(51, 231, 234, .5));
   filter: drop-shadow(0 2px #2d076d) drop-shadow(0 0 8px rgba(51, 231, 234, .5));
-  z-index: 2;
 }
 
 @supports (-webkit-text-stroke: 1px rgba(76, 228, 172, .75)) {
@@ -651,7 +656,15 @@ button, input {
 }
 
 .fade-in {
-  animation: 1s ease-in .5s forwards fade_in
+  animation: ease-in .5s forwards fade_in
+}
+
+.fade-in.fade-delay--1 {
+  animation-delay: 1s;
+}
+
+.fade-in.fade-delay--2 {
+  animation-delay: 2s;
 }
 
 .triangle-spin {

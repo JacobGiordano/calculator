@@ -9,12 +9,14 @@
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-  <h1 id="page-title" class="page-title">Calculatron</h1>
+  <div id="page-title__wrapper" class="page-title__wrapper">
+    <h1 id="page-title" class="page-title fade-in fade-delay--2">Calculatron</h1>
+  </div>
   <nav id="nav" class="nav initial">
     <div id="nav-btn" class="nav-btn" tabindex="0"></div>
     <div id="nav__inner-wrapper" class="nav__inner-wrapper" tabindex="0">
       <div id="animation-controls">
-        <span class="nav__title">Animation Controls</span>
+        <span class="nav__title">Visual Controls</span>
         <div class="tape-visibility-toggle__wrapper nav-child toggle__wrapper" tabindex="0">
           <span class="toggle__text">Tape visibility:</span>
           <span>ON</span>
@@ -28,6 +30,14 @@
           <span>ON</span>
           <div class="calculator__toggle-body toggle__body">
             <div class="calculator__toggle toggle__btn on"></div>
+          </div>
+          <span>OFF</span>
+        </div>
+        <div class="title-visibility-toggle__wrapper nav-child toggle__wrapper" tabindex="0">
+          <span class="toggle__text">Title visibility:</span>
+          <span>ON</span>
+          <div class="title__toggle-body toggle__body">
+            <div class="title__toggle toggle__btn on"></div>
           </div>
           <span>OFF</span>
         </div>
@@ -148,7 +158,7 @@
       </div>
     </div>
     <div class="bg__wrapper">
-      <div id="triangle__wrapper" class="triangle__wrapper fade-in">
+      <div id="triangle__wrapper" class="triangle__wrapper fade-in fade-delay--1">
         <div id="triangle__inner-wrapper" class="triangle__inner-wrapper">
           <div class="triangle-side side-1"></div>
           <div class="triangle-side side-2"></div>

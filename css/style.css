@@ -2,8 +2,8 @@
 
 @font-face {
   font-family: 'djb_get_digitalregular';
-  src: url('./fonts/djb_get_digital-webfont.woff2') format('woff2'),
-       url('./fonts/djb_get_digital-webfont.woff') format('woff');
+  src: url('fonts/djb_get_digital-webfont.woff2') format('woff2'),
+       url('fonts/djb_get_digital-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -12,8 +12,8 @@
 
 @font-face {
   font-family: 'rocket_rinderregular';
-  src: url('./fonts/rocketrinder-yv5d-webfont.woff2') format('woff2'),
-       url('./fonts/rocketrinder-yv5d-webfont.woff') format('woff');
+  src: url('fonts/rocketrinder-yv5d-webfont.woff2') format('woff2'),
+       url('fonts/rocketrinder-yv5d-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }

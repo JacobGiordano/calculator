@@ -80,7 +80,7 @@ button, input {
 /* ===== NAV ===== */
 .nav {
   display: flex;
-  position: fixed;
+  position: absolute;
   background: rgba(0, 0, 0, .75);
   color: #fff;
   width: 100%;

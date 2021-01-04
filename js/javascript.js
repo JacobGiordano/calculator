@@ -306,14 +306,6 @@ const toggleClass = (elementID, className, optionalSecondClass, optionalInitialS
 const updateAnimation = e => {
   let clickedInputParent = e.target.closest(".nav-child");
   let speed = clickedInputParent.querySelector(".animation-input-element").value;
-  if (e.key == "-") {
-    e.preventDefault();
-    clickedInputParent.querySelector(".animation-input-element").value = clickedInputParent.querySelector(".animation-input-element").value.replace("-", "");
-  }
-  if (speed.includes(".") || Number(speed) < 0) {
-    e.preventDefault();
-    Number(speed) < 0 ? clickedInputParent.querySelector(".animation-input-element").value = 0 : null;
-  }
   if (clickedInputParent.classList.contains("grid-animation-speed__wrapper")) {
     let bgGrids = document.querySelectorAll(".bg-grid");
     for (let i = 0; i < bgGrids.length; i++) {

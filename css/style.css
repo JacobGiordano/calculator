@@ -987,6 +987,7 @@ button, input {
 
 .bg__grid-wrapper.bottom-grid-wrapper {
   position: relative;
+  background: #160f22;
   max-height: 460px;
   transform: perspective(340px) rotateX(-135deg) rotateZ(180deg) translate3d(0, 0, 2px);
   z-index: 2;

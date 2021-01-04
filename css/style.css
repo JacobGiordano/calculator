@@ -548,8 +548,8 @@ button, input {
   opacity: 0;
   overflow: scroll;
   transition: all ease-in-out .2s;
-  transform: translate3d(0, 0, 9px);
-  z-index: 9;
+  transform: translate3d(0, 0, 0px);
+  z-index: 0;
 }
 
 .calc-tape .tape-line {
@@ -987,7 +987,6 @@ button, input {
 
 .bg__grid-wrapper.bottom-grid-wrapper {
   position: relative;
-  background: #160f22;
   max-height: 460px;
   transform: perspective(340px) rotateX(-135deg) rotateZ(180deg) translate3d(0, 0, 2px);
   z-index: 2;

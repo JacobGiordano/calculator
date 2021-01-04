@@ -88,6 +88,14 @@
           </div>
           <span>OFF</span>
         </div>
+        <div class="horizon-line-visibility-toggle__wrapper nav-child toggle__wrapper" tabindex="0">
+          <span class="toggle__text">Horizone line visibility:</span>
+          <span>ON</span>
+          <div class="horizon-line__toggle-body toggle__body">
+            <div class="horizon-line__toggle toggle__btn on"></div>
+          </div>
+          <span>OFF</span>
+        </div>
         <div class="grid-animation-toggle__wrapper nav-child toggle__wrapper" tabindex="0">
           <span class="toggle__text">Grid animation:</span>
           <span>ON</span>
@@ -119,6 +127,8 @@
           <li class="nav-child">Hide/show top grid: <span class="hotkey">f</span></li>
           <li class="nav-child">Hide/show bottom grid: <span class="hotkey">g</span></li>
           <li class="nav-child">Hide/show calculator: <span class="hotkey">h</span></li>
+          <li class="nav-child">Hide/show page title: <span class="hotkey">j</span></li>
+          <li class="nav-child">Hide/show horizon line: <span class="hotkey">k</span></li>
         </ul>
       </div>
     </div>
@@ -166,7 +176,6 @@
         </div>
       </div>
       <div id="sun-wrapper" class="sun-wrapper">
-        <div id="sun-block" class="sun-block"></div>
         <div id="sun" class="sun"></div>
       </div>
       <div id="top-grid-wrapper" class="bg__grid-wrapper top-grid-wrapper">
@@ -373,6 +382,7 @@
           <div class="bg-cell"></div>
         </div>
       </div>
+      <div id="horizon-line" class="horizon-line"></div>
       <div id="bottom-grid-wrapper" class="bg__grid-wrapper bottom-grid-wrapper">
         <div id="bg-bottom-grid" class="bg-grid bg-bottom-grid move-grid">
           <div class="bg-cell"></div>

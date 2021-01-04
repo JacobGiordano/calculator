@@ -170,6 +170,8 @@ const evalKeyPressed = e => {
     document.querySelector(".calculator-visibility-toggle__wrapper").click();
   } else if (e.key === "j") {
     document.querySelector(".title-visibility-toggle__wrapper").click();
+  } else if (e.key === "k") {
+    document.querySelector(".horizon-line-visibility-toggle__wrapper").click();
   } else if (e.key === "s") {
     document.querySelector(".sun-visibility-toggle__wrapper").click();
   } else if (e.key === "d") {
@@ -276,6 +278,8 @@ const evalToggleClick = e => {
         toggleClass("top-grid-wrapper", "no-opacity");
       } else if (clickedToggleParent.classList.contains("bottom-grid-visibility-toggle__wrapper")) {
         toggleClass("bottom-grid-wrapper", "no-opacity");
+      } else if (clickedToggleParent.classList.contains("horizon-line-visibility-toggle__wrapper")) {
+        toggleClass("horizon-line", "no-opacity");
       }
     }
   }

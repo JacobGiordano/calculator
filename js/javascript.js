@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-  var triangleWrapper = document.getElementById("triangle__wrapper");
-  var triangleTimer = setTimeout(() => {
+  let triangleWrapper = document.getElementById("triangle__wrapper");
+  let triangleTimer = setTimeout(() => {
     triangleWrapper.classList.remove("fade-delay--1");
     triangleWrapper.classList.add("triangle-spin");
   }, 5500);
@@ -190,7 +190,7 @@ const evalKeyPressed = e => {
 const showClick = (element, timeoutDuration) => {
   if (element !== null & element !== undefined) {
     element.classList.add("clicked");
-    var clickTimer = setTimeout(() => {
+    let clickTimer = setTimeout(() => {
       element.classList.remove("clicked");
     }, timeoutDuration);
     clickTimer;
@@ -198,6 +198,10 @@ const showClick = (element, timeoutDuration) => {
 }
 
 const evalCalcButton = e => {
+  if (document.activeElement.nodeName === "INPUT" && document.activeElement.id !== "calc-read-out") {
+    return;
+  }
+  
   evalToggleClick(e);
 
   let clickedEl;
@@ -299,23 +303,24 @@ const toggleClass = (elementID, className, optionalSecondClass, optionalInitialS
   }
 }
 
-const updateRangeValue = e => {
-  let clickedRangeParent = e.target.closest(".nav-child");
-  let speed;
-  let clickedRangeParentRange = clickedRangeParent.querySelectorAll(".animation-range-element")[0];
-  if (clickedRangeParent === null) {
-    return;
-  } else {
-    speed = clickedRangeParentRange.value;
-    clickedRangeParent.querySelectorAll(".range-value")[0].textContent = speed;
-  }
-  if (clickedRangeParent.classList.contains("grid-animation-speed__wrapper")) {
-    const bgGrids = document.querySelectorAll(".bg-grid");
-    for (grid of bgGrids) {
-      grid.setAttribute("style", `animation-duration: ${speed}s;`);
+const updateAnimation = e => {
+  let clickedInputParent = e.target.closest(".nav-child");
+  let speed = clickedInputParent.querySelector(".animation-input-element").value;
+  if (clickedInputParent.classList.contains("grid-animation-speed__wrapper")) {
+    let bgGrids = document.querySelectorAll(".bg-grid");
+    for (let i = 0; i < bgGrids.length; i++) {
+      let grid = bgGrids[i];
+      grid.style.animationDuration = speed + "s";
+      grid.style.display = "inline-grid";
+      let gridTimer = setTimeout(() => { grid.style.display = "grid", 0 }, 0);
+      gridTimer;
     }
-  } else if (clickedRangeParent.classList.contains("triangle-animation-speed__wrapper")) {
-    document.getElementById("triangle__wrapper").setAttribute("style", `animation-duration: ${speed}s;`);
+  } else if (clickedInputParent.classList.contains("triangle-animation-speed__wrapper")) {
+    let triangleWrapper = document.getElementById("triangle__wrapper");
+    triangleWrapper.style.animationDuration = speed + "s";
+    triangleWrapper.style.display = "none";
+    let triangleTimer = setTimeout(() => { triangleWrapper.style.display = "block", 0 }, 0);
+    triangleTimer;
   }
 }
 
@@ -353,9 +358,10 @@ const a11yClick = e => {
 
 document.addEventListener("click", evalCalcButton);
 document.addEventListener("keydown", evalCalcButton);
-const rangeSliders = document.querySelectorAll(".animation-range-element");
-for (const slider of rangeSliders) {
-  slider.addEventListener("change", updateRangeValue);
+const animationInputs = document.querySelectorAll(".animation-input-element");
+for (const input of animationInputs) {
+  input.addEventListener("change", updateAnimation);
+  input.addEventListener("keyup", updateAnimation);
 }
 
 const closeNavBtn = document.getElementById("nav-btn");

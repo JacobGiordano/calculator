@@ -284,14 +284,24 @@ button, input {
   font-weight: 600;
 }
 
-.toggle__wrapper, .animation-range-element {
+.toggle__wrapper, .animation-input-element {
   cursor: pointer;
   outline: none;
 }
 
-.nav-child .toggle__btn, .animation-range-element {
+.nav-child .toggle__btn, .animation-input-element {
   border: 1px solid transparent;
   transition: all ease-in-out .1s;
+}
+
+.animation-input-element {
+  display: inline-block;
+  max-width: 100px;
+  border-radius: 2px;
+}
+
+.input-value__measurement {
+  display: inline-block;
 }
 
 .nav-child:hover .toggle__btn, .nav-child:focus .toggle__btn  {
@@ -300,7 +310,7 @@ button, input {
   box-shadow: 0 0 10px 8px rgba(250, 3, 140, .75), inset 0 0 0px 1px rgba(255, 255, 255, .1), inset 0 0 4px 1px #ff2694;
 }
 
-.animation-range-element:hover, .animation-range-element:focus {
+.animation-input-element:hover, .animation-input-element:focus {
   outline: none;
   box-shadow: 0 0 1px 0 #fddbe5, 0 0 4px 2px #ff2694, 0 0 10px 8px rgba(250, 3, 140, .75), inset 0 0 0px 1px rgba(255, 255, 255, .1), inset 0 0 4px 1px #ff2694;
 }
@@ -313,6 +323,7 @@ button, input {
 .toggle__body {
   display: inline-block;
   border: 1px solid #ffffff;
+  border-radius: 2px;
   width: 2rem;
   height: 1rem;
   vertical-align: top;
@@ -322,6 +333,7 @@ button, input {
   display: block;
   position: relative;
   background: #E81656;
+  border-radius: 2px;
   width: .9rem;
   height: .9rem;
   transition: position ease-in-out .1s;

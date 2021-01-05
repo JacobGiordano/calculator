@@ -235,11 +235,10 @@ button, input {
 }
 
 .nav-btn:before {
-  content: "\2630";
+  content: "\2261";
   position: relative;
   left: 1px;
-  top: -7px;
-  font-size: 1.5rem;
+  top: -6px;
 }
 
 .nav.closed .nav-btn, .nav.initial .nav-btn {
@@ -259,9 +258,6 @@ button, input {
 
 .nav.open .nav-btn:before {
   content: "\00d7";
-  left: 1px;
-  top: -5px;
-  font-size: unset;
 }
 
 .nav__title {

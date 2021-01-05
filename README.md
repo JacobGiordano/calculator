@@ -1,4 +1,4 @@
-# Calculator aka "Calculatron"
+# "Calculatron the Calculator" 
 
 The objective of this project was to make a simple calculator which allowed the user to add, substract, multiply, and divide while updating the display after each operation.
 

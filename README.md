@@ -6,4 +6,4 @@ User controls for what's visible are provided, as well as some controls for the 
 
 Keyboard support is included for the calculator and controlling visual elements. A left nav contains these controls in addition to a list of available keyboard shortcuts.
 
-Overall, it's just a little calculator… *beep* *boop* *beep!*
+Feel free to check it out here: https://jacobgiordano.github.io/calculator/
